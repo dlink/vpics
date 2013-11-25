@@ -1,0 +1,2 @@
+alias show_env='env|grep -e PYTHONPATH -e VCONF'
+alias vpics_thorns='export PYTHONPATH=$HOME/vpics/lib; export VCONF=$HOME/vpics/conf/dev.yml'
