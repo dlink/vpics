@@ -1,0 +1,1 @@
+source create_pages.sql;
