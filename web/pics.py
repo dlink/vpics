@@ -16,15 +16,25 @@ class Pics(HtmlPage):
     def getHtmlContent(self):
         return \
             self.header() +\
-            self.nav() + \
-            self.displayArea()
+            self.navAndDisplayArea()
+           
+    def navAndDisplayArea(self):
+        table = HtmlTable()
+        table.addRow([self.nav(),
+                      self.displayArea()])
+        table.setRowVAlign(1,'top')
+        return center(table.getTable())
 
     def header(self):
-        return div('header', id='header')
-                   
+        text = 'David Link'
+        return div(h2(text), id='header')
 
     def nav(self):
-        return div('nav', id='nav')
+        o = ul(' '.join([li('About'),
+                         li('Sculpture'),
+                         li('Drawings'),
+                         li('Contact Info')]))
+        return div(o, id='nav')
 
     def displayArea(self):
         table = HtmlTable(id='displayTable')
@@ -33,7 +43,7 @@ class Pics(HtmlPage):
             for c in range(0,3):
                 row.append(center(self.pic()))
             table.addRow(row)
-        return table.getTable()
+        return div(table.getTable(), id='displayArea')
 
     def pic(self):
         pic_url = "/%s/%s" % (self.conf.media_dir, 'Sinner_300px.jpg')
@@ -42,6 +52,8 @@ class Pics(HtmlPage):
         return span(pic_img + caption, class_='pic')
             
     def picCaption(self):
-        return p('<b>Sinner</b> (2013)<br>Wood.  Height: 12in.', class_='picCaption')
+        return p('<i>Sinner. </i><small>2013. Wood. 12 x 6 x 6 inches</small>',
+                 class_='picCaption')
+
 Pics().go()
 

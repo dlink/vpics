@@ -3,21 +3,30 @@ body {
 }
 
 #header {
-    background-color: pink;
+    text-align: center;
 }
 
 #nav {
+    // background-color: pink;
+    // border: 2px solid red;
+    margin: 8px;
+    padding: 8px;
     float: left;
 }
 
 #displayArea {
+    // background-color: grey;
+    // border: 2px solid green;
     float: right;
-    margin: 0px 30px;
+    margin: 4px;
+    padding: 4px;
 }
 
 #displayTable, td {
-    border: 2px solid orange;
-    border-collapse:collapse;
+    // border: 2px solid black; 
+    // border-collapse:collapse;
+    // margin: 4px;
+    // padding: 4px; 
 }
 
 .pic {
@@ -27,12 +36,12 @@ body {
 }
 
 .picImage {
-    border: 2px solid blue;
+    // border: 2px solid blue;
     margin: 4px;
     padding: 4px;
 }
 .picCaption {
-    border: 2px solid green;
+    // border: 2px solid green;
     margin: 4px;
     padding: 4px;
 }
