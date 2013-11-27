@@ -3,6 +3,7 @@ export vpb="$vp/bin"    ; alias vpb='cd $vpb'
 export vpc="$vp/conf"   ; alias vpc='cd $vpc'
 export vpl="$vp/lib"    ; alias vpl='cd $vpl'
 export vps="$vp/sql"    ; alias vps='cd $vps'
+export vpt="$vp/tests"  ; alias vpt='cd $vpt'
 export vpw="$vp/web"    ; alias vpw='cd $vpw'
 
 alias vpicsdb='mysql -uvpics -pbojangles123 --database=vpics'
