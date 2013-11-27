@@ -1,10 +1,12 @@
-alias show_env='env|grep -e PYTHONPATH -e VCONF'
-alias vpics_env='export PYTHONPATH=$HOME/vpics/lib; export VCONF=$HOME/vpics/conf/dev.yml'
-
 export vp="$HOME/vpics" ; alias vp='cd $vp'
 export vpb="$vp/bin"    ; alias vpb='cd $vpb'
 export vpc="$vp/conf"   ; alias vpc='cd $vpc'
 export vpl="$vp/lib"    ; alias vpl='cd $vpl'
 export vps="$vp/sql"    ; alias vps='cd $vps'
 export vpw="$vp/web"    ; alias vpw='cd $vpw'
+
+alias vpicsdb='mysql -uvpics -pbojangles123 --database=vpics'
+
+alias show_env='env|grep -e PYTHONPATH -e VCONF'
+alias vpics_env='export PYTHONPATH=$HOME/vpics/lib; export VCONF=$HOME/vpics/conf/dev.yml'
 
