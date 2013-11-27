@@ -60,7 +60,7 @@ class Pics(HtmlPage):
     def picCaption(self):
         #return p('<i>Sinner. </i><small>2013. Wood. 12 x 6 x 6 inches</small>',
         #         class_='picCaption')
-        return div('<i>Bent Rectangle with House Motif. </i><small>2013. Wood. 12 x 6 x 6 inches</small>',
+        return div('<i>Bent Rectangle with House Motif. </i><small>2013. Wood. 12 x 6 x 6 inches.  US$350-</small>',
                  class_='picCaption')
 
 Pics().go()
