@@ -31,19 +31,23 @@ body {
 
 .pic {
     // border: 2px solid red;
-    margin: 4px;
+    // background-color: lightgrey;
+    margin: 14px;
     padding: 4px;
+    // text-align: center;
 }
 
 .picImage {
     // border: 2px solid blue;
+    width: 225px;
     margin: 4px;
     padding: 4px;
 }
 .picCaption {
     // border: 2px solid green;
-    margin: 4px;
-    padding: 4px;
+    width: 224px;
+    margin: 0px 4px;
+    padding: 0px 4px;
 }
 
 #footer {

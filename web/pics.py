@@ -41,18 +41,21 @@ class Pics(HtmlPage):
         for r in range(0,3):
             row = []
             for c in range(0,3):
-                row.append(center(self.pic()))
+                row.append(self.pic())
             table.addRow(row)
         return div(table.getTable(), id='displayArea')
 
     def pic(self):
         pic_url = "/%s/%s" % (self.conf.media_dir, 'Sinner_300px.jpg')
         pic_img = img(src=pic_url, class_='picImage')
-        caption = self.picCaption() #p('Picture Caption', class_='picCaption')
-        return span(pic_img + caption, class_='pic')
+        caption = self.picCaption() 
+        return div(pic_img + caption, class_='pic')
+
             
     def picCaption(self):
-        return p('<i>Sinner. </i><small>2013. Wood. 12 x 6 x 6 inches</small>',
+        #return p('<i>Sinner. </i><small>2013. Wood. 12 x 6 x 6 inches</small>',
+        #         class_='picCaption')
+        return div('<i>Bent Rectangle with House Motif. </i><small>2013. Wood. 12 x 6 x 6 inches</small>',
                  class_='picCaption')
 
 Pics().go()
