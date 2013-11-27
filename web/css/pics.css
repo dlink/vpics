@@ -1,0 +1,42 @@
+body {
+    background-color: white;
+}
+
+#header {
+    background-color: pink;
+}
+
+#nav {
+    float: left;
+}
+
+#displayArea {
+    float: right;
+    margin: 0px 30px;
+}
+
+#displayTable, td {
+    border: 2px solid orange;
+    border-collapse:collapse;
+}
+
+.pic {
+    // border: 2px solid red;
+    margin: 4px;
+    padding: 4px;
+}
+
+.picImage {
+    border: 2px solid blue;
+    margin: 4px;
+    padding: 4px;
+}
+.picCaption {
+    border: 2px solid green;
+    margin: 4px;
+    padding: 4px;
+}
+
+#footer {
+    clear: both;
+}
