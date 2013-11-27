@@ -24,5 +24,9 @@ class TestPages(unittest.TestCase):
         page = self.pages.get(filter="name = '%s'" % PAGE_NAME)[0]
         self.assertTrue(PAGE_NAME, page.name)
                            
+    def test_page_pics(self):
+        page = Page(PAGE_ID)
+        self.assertTrue(len(page.pics))
+
 if __name__ == '__main__':
     unittest.main()
