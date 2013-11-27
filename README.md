@@ -1,48 +1,45 @@
 Picture Viewer App
 
 Install
-=======
+-------
 
 Assuming base directory is $HOME.
 Assuming images directory is /data/vpics-images
 
-Code
-----
- $ git clone git@github.com:dlink/vpics.git
+### Code
+The code base is in github.
 
-Database
---------
-Create a database and a database base user called vpics:
+    $ git clone git@github.com:dlink/vpics.git
 
- $ mysql
- mysql> create database vpics;
- mysql> grant all on vpics.* to vpics@localhost identified by 'bogangles123';
- mysql> exit
+### Database
+Use Mysql.  Create a database and a database base user called _vpics_.  Create tables:
 
- $ cd $HOME/vpics/sql
- $ cat create_all.sql | mysql -uvpics -pbogangles123 vpics
+    $ mysql
+    mysql> create database vpics;
+    mysql> grant all on vpics.* to vpics@localhost identified by 'bogangles123';
+    mysql> exit
+    $ cd $HOME/vpics/sql
+    $ cat create_all.sql | mysql -uvpics -pbogangles123 vpics
 
-Images
-------
+###Images
+
 Create a directory to house images.  Symlink that into the web/ directory:
 
- $ mkdir /data/vpics-images
- $ cd $HOME/vpics/web
- $ ln -s /data/vpics-images images
+    $ mkdir /data/vpics-images
+    $ cd $HOME/vpics/web
+    $ ln -s /data/vpics-images images
 
-Apache 2
---------
- # cd /etc/apache/sites-available
- # cp ~<USERNAME>/vpics/conf/apache/vpics.conf .
+### Apache 2
+As the root user, copy apache2 config template and edit it:
 
-Edit  vpics.conf
+    # cd /etc/apache/sites-available
+    # cp ~<USERNAME>/vpics/conf/apache/vpics.conf .
+	# emacs vpics.conf # or vim vpics.conf
+    # cd ../sites-enabled
+    # ln -s ../sites-available/vpics.conf .
+    # /etc/init.d/apache2 restart
 
- # cd ../sites-enabled
- # ln -s ../sites-available/vpics.conf .
- # /etc/init.d/apache2 restart
-
-Config
-------
+### Configuration
 See vpics/conf/dev.yml
 
 
