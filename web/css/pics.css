@@ -39,7 +39,7 @@ body {
 
 .picImage {
     // border: 2px solid blue;
-    width: 225px;
+    // width: 225px;
     margin: 4px;
     padding: 4px;
 }
@@ -48,6 +48,8 @@ body {
     width: 224px;
     margin: 0px 4px;
     padding: 0px 4px;
+    // display: none;
+    // color: white;
 }
 
 #footer {

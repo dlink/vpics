@@ -37,23 +37,12 @@ class Pics(HtmlPage):
         return div(o, id='nav')
 
     def displayArea(self):
-        table = HtmlTable(id='displayTable')
-        for r in range(0,3):
-            row = []
-            for c in range(0,3):
-                row.append(self.pic())
-            table.addRow(row)
-        return div(table.getTable(), id='displayArea')
+        return self.pic()
 
     def pic(self):
-        pic_url = "/%s/%s" % (self.conf.media_dir, 'Sinner_300px.jpg')
+        pic_url = "/%s/%s" % (self.conf.media_dir, 'Sinner.jpg')
         pic_img = img(src=pic_url, class_='picImage')
         caption = self.picCaption() 
-
-        href = "/pic.py"
-        
-        #return div(a(pic_img + caption, class_='pic',
-        #             href=href))
         return div(pic_img + caption, class_='pic')
 
             
