@@ -6,6 +6,7 @@ Install
 -------
 
 Assuming base directory is $HOME.
+
 Assuming images directory is /data/vpics-images
 
 ### Code
