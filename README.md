@@ -2,6 +2,16 @@ Picture Viewer App
 
 A work in progress (11/27/2013)
 
+Requirements
+------------
+
+- MySQL-python
+
+- vlib - Python base libraries, [https://github.com/dlink/vlib](https://github.com/dlink/vlib)
+
+- vweb - Python website libraries, - [https://github.com/dlink/vweb](https://github.com/dlink/vweb)
+
+
 Install
 -------
 
@@ -9,7 +19,7 @@ Assuming base directory is $HOME.
 
 Assuming images directory is /data/vpics-images
 
-### Code
+#### Code
 The code base is in github.
 
     $ git clone git@github.com:dlink/vpics.git
