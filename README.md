@@ -11,6 +11,9 @@ Requirements
 
 - vweb - Python website libraries, - [https://github.com/dlink/vweb](https://github.com/dlink/vweb)
 
+Optional:
+
+- GraphicsMagick
 
 Install
 -------
