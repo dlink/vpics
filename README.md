@@ -1,5 +1,7 @@
 Picture Viewer App
 
+A work in progress (11/27/2013)
+
 Install
 -------
 
