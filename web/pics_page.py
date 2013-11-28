@@ -9,7 +9,7 @@ from vweb.html import *
 from pages import Pages, Page
 
 DEFAULT_PAGE_ID = '1'
-NUM_COLS = 3
+NUM_COLS = 4
 
 class PicsPage(HtmlPage):
 
