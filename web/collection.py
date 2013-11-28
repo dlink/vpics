@@ -8,8 +8,10 @@ from vweb.html import *
 
 from pages import Pages, Page
 
+from nav import Nav
+
 DEFAULT_PAGE_ID = '1'
-NUM_COLS = 4
+NUM_COLS = 3
 
 class Collection(HtmlPage):
 
@@ -17,6 +19,10 @@ class Collection(HtmlPage):
         HtmlPage.__init__(self, 'Pics Page')
         self.conf = conf.getInstance()        
         self.style_sheets.append('css/pics.css')
+
+        # navigation
+        self.nav = Nav()
+        self.style_sheets.append(self.nav.style_sheets())
 
         self.pages = Pages()
         self.page = None
@@ -41,7 +47,7 @@ class Collection(HtmlPage):
 
     def navAndDisplayArea(self):
         table = HtmlTable()
-        table.addRow([self.nav(),
+        table.addRow([self.nav.nav(),
                       self.displayArea()])
         table.setRowVAlign(1,'top')
         return center(table.getTable())
@@ -49,14 +55,14 @@ class Collection(HtmlPage):
     def header(self):
         text = 'David Link'
         return div(h2(text), id='header')
-
+    '''
     def nav(self):
         o = ul(' '.join([li('About'),
                          li('Sculpture'),
                          li('Drawings'),
                          li('Contact Info')]))
         return div(o, id='nav')
-
+    '''
     def displayArea(self):
         num_pics = len(self.page.pics)
         num_rows = ((num_pics-1)/NUM_COLS)+1
@@ -77,8 +83,8 @@ class Collection(HtmlPage):
         pic_url = "/%s/%s" % (self.conf.media_dir, self.page.pics[i].filename)
         pic_img = img(src=pic_url, class_='picImage')
         caption = self.picCaption(i) 
-        href = "/pic.py"
-        return div(pic_img + caption, class_='pic')
+        href = "/oneup.py?id=%s" % self.page.pics[i].name
+        return div(a(pic_img + caption, href=href), class_='pic')
 
             
     def picCaption(self, i):
