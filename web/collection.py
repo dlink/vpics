@@ -11,7 +11,7 @@ from pages import Pages, Page
 DEFAULT_PAGE_ID = '1'
 NUM_COLS = 4
 
-class PicsPage(HtmlPage):
+class Collection(HtmlPage):
 
     def __init__(self):
         HtmlPage.__init__(self, 'Pics Page')
@@ -86,5 +86,5 @@ class PicsPage(HtmlPage):
                                                     self.page.pics[i].caption),
                  class_='picCaption')
 
-PicsPage().go()
+Collection().go()
 
