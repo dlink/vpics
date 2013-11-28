@@ -6,12 +6,12 @@ from vweb.htmlpage import HtmlPage
 from vweb.htmltable import HtmlTable
 from vweb.html import *
 
-class Pics(HtmlPage):
+class Oneup(HtmlPage):
 
     def __init__(self):
-        HtmlPage.__init__(self, 'Pics')
+        HtmlPage.__init__(self, 'Oneup')
         self.conf = conf.getInstance()        
-        self.style_sheets.append('css/pics.css')
+        self.style_sheets.append('css/oneup.css')
 
     def getHtmlContent(self):
         return \
@@ -52,5 +52,5 @@ class Pics(HtmlPage):
         return div('<i>Bent Rectangle with House Motif. </i><small>2013. Wood. 12 x 6 x 6 inches</small>',
                  class_='picCaption')
 
-Pics().go()
+Oneup().go()
 
