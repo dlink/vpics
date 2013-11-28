@@ -6,14 +6,6 @@ body {
     text-align: center;
 }
 
-#nav {
-    // background-color: pink;
-    // border: 2px solid red;
-    margin: 8px;
-    padding: 8px;
-    float: left;
-}
-
 #displayArea {
     // background-color: grey;
     // border: 2px solid green;
@@ -54,4 +46,13 @@ body {
 
 #footer {
     clear: both;
+}
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+a:visited {
+    text-decoration:none;
+    color: grey;
 }
