@@ -35,7 +35,7 @@ class Oneup(HtmlPage):
 
         # get Page Object
         if pic_id.isdigit():
-            self.pic = Pic(1) #pic_id)
+            self.pic = Pic(pic_id)
         else:
             self.pic = self.pics.get('name = "%s"' % pic_id)[0]
 

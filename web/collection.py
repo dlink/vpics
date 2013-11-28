@@ -55,14 +55,7 @@ class Collection(HtmlPage):
     def header(self):
         text = 'David Link'
         return div(h2(text), id='header')
-    '''
-    def nav(self):
-        o = ul(' '.join([li('About'),
-                         li('Sculpture'),
-                         li('Drawings'),
-                         li('Contact Info')]))
-        return div(o, id='nav')
-    '''
+
     def displayArea(self):
         num_pics = len(self.page.pics)
         num_rows = ((num_pics-1)/NUM_COLS)+1
