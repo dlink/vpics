@@ -70,6 +70,7 @@ class PicsPage(HtmlPage):
                     row.append(self.pic_div(i))
                     i += 1
             table.addRow(row)
+            table.setRowVAlign(table.rownum, 'top')
         return div(table.getTable(), id='displayArea')
 
     def pic_div(self, i):
