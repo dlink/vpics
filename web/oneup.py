@@ -6,6 +6,7 @@ from vweb.htmlpage import HtmlPage
 from vweb.htmltable import HtmlTable
 from vweb.html import *
 
+from pages import Page
 from pics import Pics, Pic
 
 from nav import Nav
@@ -69,8 +70,10 @@ class Oneup(HtmlPage):
 
     def picCollections(self):
         collections = []
-        for page_name in self.pic.pages:
-            collections.append(a(page_name, href='collection.py?id=%s' % page_name))
+        for row in self.pic.pages:
+            page = Page(row['page_id'])
+            
+            collections.append(a(page.name, href='collection.py?id=%s' % page.name))
         return div('Tags: ' + ', '.join(collections), class_='picCollections')
 
     def picCaption(self):

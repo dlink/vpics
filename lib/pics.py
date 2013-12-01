@@ -33,5 +33,5 @@ class Pic(DataTable):
         if '_pages' not in self.__dict__:
             self._pages = []
             for row in PagePics().get('pic_id = "%s"' % self.pic_id):
-                self._pages.append(row['name'])
+                self._pages.append(row)
         return self._pages
