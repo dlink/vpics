@@ -9,17 +9,21 @@ class Nav(object):
     def style_sheets(self):
         return 'css/nav.css'
 
-    def nav(self):
+    def nav(self, name=None):
+        '''Draw Navigation Menu.
+           Pass in the name of the current selection.
+        '''
         menu = [
             ['Sculpture'   , 'collection.py?id=sculpture'],
             ['Drawings'    , 'collection.py?id=drawings'],
+            ['Paintings'    , 'collection.py?id=paintings'],
             ['About'       , 'about.py'],
             ['Contact Info', 'contact.py']
             ]
         
         o = ''
         for item in menu:
-            if item[0] == 'Sculpture':
+            if item[0] == name:
                 class_ = 'navLinkSelected'
             else:
                 class_ = 'navLink'

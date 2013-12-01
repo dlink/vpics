@@ -10,6 +10,7 @@ body {
 #displayArea {
     // background-color: grey;
     // border: 2px solid green;
+    width: 900px;
     float: right;
     margin: 4px;
     padding: 4px;

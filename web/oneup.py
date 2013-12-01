@@ -58,7 +58,7 @@ class Oneup(HtmlPage):
         return div(h2(text), id='header')
 
     def displayArea(self):
-        return self.pic_div()
+        return div(self.pic_div(), id='displayArea')
 
     def pic_div(self):
         collections = self.picCollections()
@@ -83,7 +83,7 @@ class Oneup(HtmlPage):
                  class_='picCaption')
 
     def picDescription(self):
-        return div(self.pic.description, class_='picDescription')
+        return div(self.pic.description or '', class_='picDescription')
 
 Oneup().go()
 

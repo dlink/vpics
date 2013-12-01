@@ -51,7 +51,7 @@ class Collection(HtmlPage):
             
     def navAndDisplayArea(self):
         table = HtmlTable()
-        table.addRow([self.nav.nav(),
+        table.addRow([self.nav.nav(self.page.name),
                       self.displayArea()])
         table.setRowVAlign(1,'top')
         return center(table.getTable())
