@@ -11,7 +11,8 @@ from pages import Pages, Page
 from nav import Nav
 
 DEFAULT_PAGE_ID = '1'
-NUM_COLS = 3
+NUM_COLS = 4
+THUMBNAILS = '200px'
 
 class Collection(HtmlPage):
 
@@ -73,7 +74,8 @@ class Collection(HtmlPage):
         return div(table.getTable(), id='displayArea')
 
     def pic_div(self, i):
-        pic_url = "/%s/%s" % (self.conf.media_dir, self.page.pics[i].filename)
+        pic_url = "/%s/%s/%s" % (self.conf.media_dir, THUMBNAILS,
+                                 self.page.pics[i].filename)
         pic_img = img(src=pic_url, class_='picImage')
         caption = self.picCaption(i) 
         href = "/oneup.py?id=%s" % self.page.pics[i].name
