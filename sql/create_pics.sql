@@ -3,10 +3,11 @@
 set foreign_key_checks = 0;
 
 create table pics (
-  pic_id    integer unsigned     not null auto_increment primary key,
-  name      varchar(30)          not null,
-  filename  varchar(256)         not null,
-  caption   varchar(512)         ,
+  pic_id       integer unsigned     not null auto_increment primary key,
+  name         varchar(30)          not null,
+  filename     varchar(256)         not null,
+  caption      varchar(512)         ,
+  description  varchar(1024)        ,
 
   last_updated timestamp         not null 
         default current_timestamp on update current_timestamp,
