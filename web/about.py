@@ -42,7 +42,12 @@ def text():
     return '''
 <table>
   <tr>
-    <td valign="top"><img src="images/Cube_Drawing.png"/></td>
+    <td valign="top">
+      <center><img src="images/Cube_Drawing.png"/></center>
+      <p>&nbsp;</p>
+      <img src="images/Self.jpg"/>
+      <img src="images/David_Link.png"/>
+    </td>
     <td>
 <h3>Elegance and Design</h3>
 
@@ -64,13 +69,13 @@ the <a href="http://en.wikipedia.org/wiki/Minimalism">Minimalist Movement</a> in
 
 <h3>Shows and Experience</h3>
 
-<h4>Recent</h4>
+<p>Recent</p>
 <ul>
   <li>Dec 2013 - Jan 2014: <a href="http://baugallery.com">Bau Gallery<a/>, Beacon, NY - Group Show: <i>Saints and Sinners</i>
   <li>Dec 2013 - Jan 2014: <a href="http://www.catalystgallery.com/">The Catalyst Gallery</a>, Beacon, NY - Group Show
 </ul>
 
-<h4>Previous</h4>
+<pe>Previous</p>
 <ul>
   <li> Manhole Drawing Series.  Ossining Art Council, 1995
   <li> Public Mural: Computer Motif, Cuernavaca, Mexico, House Paint, 12'x8', 1992
