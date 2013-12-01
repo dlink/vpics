@@ -29,6 +29,14 @@ body {
     // text-align: center;
 }
 
+.picCollections {
+    // border: 2px solid green;
+    width: 400px;
+    margin: 0px 4px;
+    padding: 0px 4px;
+    // display: none;
+    // color: white;
+}
 .picImage {
     // border: 2px solid blue;
     // width: 225px;
@@ -37,7 +45,7 @@ body {
 }
 .picCaption {
     // border: 2px solid green;
-    width: 224px;
+    width: 400px;
     margin: 0px 4px;
     padding: 0px 4px;
     // display: none;
@@ -45,8 +53,8 @@ body {
 }
 
 .picDescription {
-    border: 2px solid green;
-    width: 224px;
+    // border: 2px solid green;
+    width: 400px;
     margin: 0px 4px;
     padding: 0px 4px;
     // display: none;
@@ -57,6 +65,7 @@ body {
     clear: both;
 }
 
+/*
 a:link {
     text-decoration: none;
     color: black;
@@ -65,3 +74,4 @@ a:visited {
     text-decoration:none;
     color: black;
 }
+*/
