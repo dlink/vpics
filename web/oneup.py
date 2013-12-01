@@ -59,15 +59,27 @@ class Oneup(HtmlPage):
         return self.pic_div()
 
     def pic_div(self):
+        collections = self.picCollections()
         pic_url = "/%s/%s" % (self.conf.media_dir, self.pic.filename)
         pic_img = img(src=pic_url, class_='picImage')
         caption = self.picCaption() 
-        return div(pic_img + caption, class_='pic')
+        description = self.picDescription()
+        return div(collections + pic_img + caption + hr() + description, 
+                   class_='pic')
+
+    def picCollections(self):
+        collections = []
+        for page_name in self.pic.pages:
+            collections.append(a(page_name, href='collection.py?id=%s' % page_name))
+        return div('Tags: ' + ', '.join(collections), class_='picCollections')
 
     def picCaption(self):
         return div('<i>%s </i><small>%s</small>' % (self.pic.name,
                                                     self.pic.caption),
                  class_='picCaption')
+
+    def picDescription(self):
+        return div(self.pic.description, class_='picDescription')
 
 Oneup().go()
 
