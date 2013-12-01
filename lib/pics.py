@@ -1,6 +1,8 @@
 from vlib import db
 from vlib.datatable import DataTable
 
+from pagepics import PagePics
+
 class Pics(DataTable):
     '''Preside over Pics Database Table'''
 
@@ -26,3 +28,10 @@ class Pic(DataTable):
         self.data = self.get('pic_id = %s' % pic_id)[0]
         self.__dict__.update(self.data)
 
+    @property
+    def pages(self):
+        if '_pages' not in self.__dict__:
+            self._pages = []
+            for row in PagePics().get('pic_id = "%s"' % self.pic_id):
+                self._pages.append(row['name'])
+        return self._pages

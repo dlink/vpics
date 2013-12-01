@@ -2,6 +2,7 @@ from vlib import db
 from vlib.datatable import DataTable
 
 from pics import Pic
+from pagepics import PagePics
 
 class Pages(DataTable):
     '''Preside over Pages Database Table'''
@@ -35,14 +36,3 @@ class Page(DataTable):
             for row in PagePics().get('page_id = "%s"' % self.page_id):
                 self._pics.append(Pic(row['pic_id']))
         return self._pics
-
-
-class PagePics(DataTable):
-    '''Preside over the Page Pics many-to-many Database Table'''
-
-    def __init__(self):
-        self.db = db.getInstance()
-        DataTable.__init__(self, self.db, 'page_pics')
-
-                             
-                                  
