@@ -44,19 +44,18 @@ def text():
   <tr>
     <td valign="top">
       <center><img src="images/Cube_Drawing.png"/></center>
-      <p>&nbsp;</p>
-      <img src="images/Self.jpg"/>
-      <img src="images/David_Link.png"/>
+      <img src="images/Self.jpg" width="160px"/>
+      <img src="images/David_Link.png" width="160px"/>
     </td>
-    <td>
+    <td valign="top" style="padding:0 50px;">
 <h3>Elegance and Design</h3>
 
 
-<p>I love form and shape.  I draw, paint and sculpt.  Everything starts from drawing.  I draw realistically and, I draft designs.  Sculpture start as a drawing.  I make hundreds of sketches of sculptures, that fill notebooks.  I exploring subtle differences in angles and proportions.  I strive to find the right piece, elegant in design, and shows simple harmony in form, before I choosing one to build.</p>
+<p>I love form and shape.  I draw, paint and sculpt.  Everything starts with drawing.  I draw realistically and, I draft designs.  I make hundreds of sketches of sculptures that fill notebooks.  I exploring subtle differences in angles and proportions. I look for elegance.  I want to show simple harmony in form.  All this before I choose one to build.</p>
 
-<p>My Sculpture is Mathematical.  It is interesting to look at from all angles.   It is an interplays of forms and space.  Line can be a three dimensional sold.  Sculpture is made up of basic geometric shapes.  When form is reduced to simple shapes, then the basic elements or Art:  Balance, Rhythm, Harmony, and Beauty, are revealed.</p>
+<p>My Sculpture is Mathematical, it is interesting to look at from all angles.   It is an interplays of forms and space.  Line can be a three dimensional sold.  Sculpture is made up of basic geometric shapes.  When form is reduced to simple shapes, then the basic elements or Art:  Balance, Rhythm, Harmony, and Beauty, are revealed.</p>
 
-<p>I studied Painting, Drawing and Sculpture at SUNY Purchase.   I became greatly inspired by such artists such as 
+<p>I studied Painting, Drawing and Sculpture at SUNY Purchase.   I became greatly inspired by artists such as 
 <a href="http://images.google.com/images?q=frank+stella" target="_blank">Frank Stella</a>, 
 <a href="http://images.google.com/images?q=ellsworth+kelly" target="_blank">Ellsworth Kelly</a>,
 <a href="http://images.google.com/images?q=Donald+Judd" target="_blank">Donald Judd</a>, 
@@ -67,7 +66,7 @@ the <a href="http://en.wikipedia.org/wiki/Minimalism">Minimalist Movement</a> in
 
 <p>&nbsp;</p>
 
-<h3>Shows and Experience</h3>
+<h3>Shows</h3>
 
 <p>Recent</p>
 <ul>
@@ -85,14 +84,6 @@ the <a href="http://en.wikipedia.org/wiki/Minimalism">Minimalist Movement</a> in
   <li> Large Outdoor Sculpture, Oyster Bay, NY, 10'x10'x10', plywood and 2x4s, 1977
 </ul>
 
-
-<p>&nbsp;</p>
-
-<h3>Education</h3>
-<ul>
-  <li>SUNY Purchase, NY - Fine Art, 1981- 1984
-  <li>SUNY Oneonta, NY - Mathematics, 1979 - 1981
-</ul>
 
    </td>
 </tr>

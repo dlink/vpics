@@ -40,13 +40,16 @@ class Contact(HtmlPage):
 
 def text():
     return '''
+<div style="padding: 20px;">
 David Link<br>
 Putnam Valley, NY<br>
 <br>
 914-629-5723<br>
 <br>
 dvlink@gmail.com<br>
-
+<br>
+d a v i d l i n k a r t . c o m
+</div>
 '''
 
 Contact().go()
