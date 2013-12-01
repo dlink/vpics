@@ -7,4 +7,6 @@ class PagePics(DataTable):
     def __init__(self):
         self.db = db.getInstance()
         DataTable.__init__(self, self.db, 'page_pics')
+
+        # join pages table
         self.tablename += ' pp join pages p on pp.page_id = p.page_id'
