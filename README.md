@@ -32,10 +32,10 @@ Use Mysql.  Create a database and a database base user called _vpics_.  Create t
 
     $ mysql
     mysql> create database vpics;
-    mysql> grant all on vpics.* to vpics@localhost identified by 'bogangles123';
+    mysql> grant all on vpics.* to vpics@localhost identified by 'bojangles123';
     mysql> exit
     $ cd $HOME/vpics/sql
-    $ cat create_all.sql | mysql -uvpics -pbogangles123 vpics
+    $ cat create_all.sql | mysql -uvpics -pbojangles123 vpics
 
 ###Images
 
