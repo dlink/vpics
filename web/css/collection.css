@@ -6,14 +6,6 @@
     // text-align: center;
 }
 
-.picCollections {
-    // border: 2px solid green;
-    width: 400px;
-    margin: 0px 4px;
-    padding: 0px 4px;
-    // display: none;
-    // color: white;
-}
 .picImage {
     // border: 2px solid blue;
     // width: 225px;
@@ -22,22 +14,18 @@
 }
 .picCaption {
     // border: 2px solid green;
-    width: 400px;
+    width: 200px;
     margin: 0px 4px;
     padding: 0px 4px;
     // display: none;
     // color: white;
 }
 
-.picDescription {
-    // border: 2px solid green;
-    width: 400px;
-    margin: 0px 4px;
-    padding: 0px 4px;
-    // display: none;
-    // color: white;
+a:link {
+    text-decoration: none;
+    color: black;
 }
-
-#footer {
-    clear: both;
+a:visited {
+    text-decoration:none;
+    color: black;
 }

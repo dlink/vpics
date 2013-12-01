@@ -1,0 +1,28 @@
+body {
+    background-color: white;
+    padding: 0 50px;
+}
+
+#header {
+    text-align: center;
+}
+
+#displayArea {
+    // background-color: grey;
+    // border: 2px solid green;
+    float: right;
+    margin: 4px;
+    padding: 4px;
+}
+
+#displayTable, td {
+    // border: 2px solid black; 
+    // border-collapse:collapse;
+    // margin: 4px;
+    // padding: 4px; 
+}
+
+
+#footer {
+    clear: both;
+}

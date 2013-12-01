@@ -19,7 +19,8 @@ class Collection(HtmlPage):
     def __init__(self):
         HtmlPage.__init__(self, 'Pics Page')
         self.conf = conf.getInstance()        
-        self.style_sheets.append('css/pics.css')
+        self.style_sheets.append('css/vpics.css')
+        self.style_sheets.append('css/collection.css')
 
         # navigation
         self.nav = Nav()

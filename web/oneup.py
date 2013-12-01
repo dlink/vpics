@@ -18,6 +18,7 @@ class Oneup(HtmlPage):
     def __init__(self):
         HtmlPage.__init__(self, 'Oneup')
         self.conf = conf.getInstance()        
+        self.style_sheets.append('css/vpics.css')
         self.style_sheets.append('css/oneup.css')
 
         # nav

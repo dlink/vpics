@@ -8,9 +8,9 @@ class Nav(object):
         return 'css/nav.css'
 
     def nav(self):
-        o = ul(' '.join([li('About'),
-                         li('Sculpture'),
+        o = ul(' '.join([li(a('About', href='about.py')),
+                         li(a('Sculpture', href='collection.py?id=sculpture')),
                          li('Drawings'),
-                         li('Contact Info')]))
+                         li(nobr('Contact Info'))]))
         return div(o, id='nav')
 
