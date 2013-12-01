@@ -44,8 +44,10 @@ class Collection(HtmlPage):
         if page_id.isdigit():
             self.page = Page(page_id)
         else:
-            self.page = self.pages.get('name = "%s"' % page_id)
-
+            results = self.pages.get('name = "%s"' % page_id)
+            if results:
+                self.page = results[0]
+            
     def navAndDisplayArea(self):
         table = HtmlTable()
         table.addRow([self.nav.nav(),
@@ -58,6 +60,9 @@ class Collection(HtmlPage):
         return div(h2(text), id='header')
 
     def displayArea(self):
+        if not self.page:
+            return self.pageNotFound()
+
         num_pics = len(self.page.pics)
         num_rows = ((num_pics-1)/NUM_COLS)+1
 
@@ -81,11 +86,13 @@ class Collection(HtmlPage):
         href = "/oneup.py?id=%s" % self.page.pics[i].name
         return div(a(pic_img + caption, href=href), class_='pic')
 
-            
     def picCaption(self, i):
         return div('<i>%s </i><small>%s</small>' % (self.page.pics[i].name,
                                                     self.page.pics[i].caption),
                  class_='picCaption')
+
+    def pageNotFound(self):
+        return div(p('No page found.'))
 
 Collection().go()
 
