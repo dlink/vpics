@@ -53,7 +53,7 @@ def text():
 
 <p>I love form and shape.  I draw, paint and sculpt.  Everything starts with drawing.  I draw realistically and, I draft designs.  I make hundreds of sketches of sculptures that fill notebooks.  I exploring subtle differences in angles and proportions. I look for elegance.  I want to show simple harmony in form.  All this before I choose one to build.</p>
 
-<p>My Sculpture is Mathematical, it is interesting to look at from all angles.   It is an interplays of forms and space.  Line can be a three dimensional sold.  Sculpture is made up of basic geometric shapes.  When form is reduced to simple shapes, then the basic elements or Art:  Balance, Rhythm, Harmony, and Beauty, are revealed.</p>
+<p>When form is reduced to simple shapes, then basic elements of art like, balance, rhythm, harmony, and beauty are revealed. My sculptures are mathematical by nature, and look interesting from all angles. I'm interested in the interplay of form and space, and the relationship of basic shapes and universal beauty.</p>
 
 <p>I studied Painting, Drawing and Sculpture at SUNY Purchase.   I became greatly inspired by artists such as 
 <a href="http://images.google.com/images?q=frank+stella" target="_blank">Frank Stella</a>, 
