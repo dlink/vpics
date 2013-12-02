@@ -35,7 +35,7 @@ class Oneup(HtmlPage):
         else:
             pic_id = DEFAULT_PIC_ID
 
-        # get Page Object
+        # get Pic Object
         if pic_id.isdigit():
             self.pic = Pic(pic_id)
         else:
@@ -61,12 +61,13 @@ class Oneup(HtmlPage):
         return div(self.pic_div(), id='displayArea')
 
     def pic_div(self):
-        collections = self.picCollections()
+        collections = ''  #self.picCollections()
         pic_url = "/%s/%s" % (self.conf.media_dir, self.pic.filename)
         pic_img = img(src=pic_url, class_='picImage')
+        picNav = self.picNav()
         caption = self.picCaption() 
         description = self.picDescription()
-        return div(collections + pic_img + caption + hr() + description, 
+        return div(collections + pic_img + picNav + caption + hr() + description, 
                    class_='pic')
 
     def picCollections(self):
@@ -74,8 +75,42 @@ class Oneup(HtmlPage):
         for row in self.pic.pages:
             page = Page(row['page_id'])
             
-            collections.append(a(page.name, href='collection.py?id=%s' % page.name))
+            collections.append(a(page.name, href='collection.py?id=%s' 
+                                 % page.name))
         return div('Tags: ' + ', '.join(collections), class_='picCollections')
+
+    def picNav(self):
+        page = Page(self.pic.pages[0]['page_id'])
+
+        prev_pic_id = None
+        next_pic_id = None
+        old_pic_id = None
+        found = 0
+
+        # loop thru first page of pics, find prev and next pic_ids
+        for pic in page.pics:
+            pic_id = pic.pic_id
+            if found:
+                next_pic_id = pic_id
+                break
+            if pic_id == self.pic.pic_id:
+                if old_pic_id:
+                    prev_pic_id = old_pic_id
+                found = 1
+            old_pic_id = pic_id
+
+        #prev
+        if prev_pic_id:
+            prev = a('prev', href='oneup.py?id=%s' % prev_pic_id)
+        else:
+            prev = font('prev', color='lightgrey')
+
+        # next
+        if next_pic_id:
+            next = a('next', href='oneup.py?id=%s' % next_pic_id)
+        else:
+            next = font('next', color='lightgrey')
+        return '%s | %s' % (prev, next)
 
     def picCaption(self):
         return div('<i>%s </i><small>%s</small>' % (self.pic.name,
