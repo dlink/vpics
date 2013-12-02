@@ -29,6 +29,14 @@
     // color: white;
 }
 
+.picNav {
+    // border: 2px solid green;
+    width: 400px;
+    margin: 0px 4px;
+    padding: 0px 4px;
+    // display: none;
+    // color: white;
+}
 .picDescription {
     // border: 2px solid green;
     width: 400px;

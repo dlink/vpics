@@ -67,7 +67,7 @@ class Oneup(HtmlPage):
         picNav = self.picNav()
         caption = self.picCaption() 
         description = self.picDescription()
-        return div(collections + pic_img + picNav + caption + hr() + description, 
+        return div(collections + picNav + pic_img + caption + hr() + description, 
                    class_='pic')
 
     def picCollections(self):
@@ -110,7 +110,7 @@ class Oneup(HtmlPage):
             next = a('next', href='oneup.py?id=%s' % next_pic_id)
         else:
             next = font('next', color='lightgrey')
-        return '%s | %s' % (prev, next)
+        return div('%s | %s' % (prev, next), class_='picNav')
 
     def picCaption(self):
         return div('<i>%s </i><small>%s</small>' % (self.pic.name,
