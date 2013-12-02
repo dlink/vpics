@@ -16,7 +16,7 @@ class Nav(object):
         menu = [
             ['Sculpture'   , 'collection.py?id=sculpture'],
             ['Drawings'    , 'collection.py?id=drawings'],
-            ['Paintings'    , 'collection.py?id=paintings'],
+            # ['Paintings'    , 'collection.py?id=paintings'],
             ['About'       , 'about.py'],
             ['Contact Info', 'contact.py']
             ]
