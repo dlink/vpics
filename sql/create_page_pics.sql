@@ -6,8 +6,9 @@ create table page_pics (
   page_pic_id integer unsigned     not null auto_increment primary key,
   page_id     integer unsigned     not null,
   pic_id      integer unsigned     not null,
+  seq_num     integer unsigned     ,
 
-  last_updated timestamp         not null 
+  last_updated timestamp           not null 
         default current_timestamp on update current_timestamp,
   created datetime         default null,
 

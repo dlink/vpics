@@ -33,6 +33,10 @@ class Page(DataTable):
     def pics(self):
         if '_pics' not in self.__dict__:
             self._pics = []
-            for row in PagePics().get('page_id = "%s"' % self.page_id):
+            #for row in PagePics().get('page_id = "%s"' % self.page_id):
+            pagePics = PagePics()
+            pagePics.setFilters('page_id = "%s"' % self.page_id)
+            pagePics.setOrderBy('seq_num')
+            for row in pagePics.getTable():
                 self._pics.append(Pic(row['pic_id']))
         return self._pics
