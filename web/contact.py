@@ -14,6 +14,7 @@ class Contact(HtmlPage):
         HtmlPage.__init__(self, 'Pics Page')
         self.style_sheets.append('css/vpics.css')
         #self.style_sheets.append('css/contact.css')
+        self.javascript_src.append('js.googleanalytics')
 
         # navigation
         self.nav = Nav()
