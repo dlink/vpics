@@ -20,7 +20,7 @@ class Oneup(HtmlPage):
         self.conf = conf.getInstance()        
         self.style_sheets.append('css/vpics.css')
         self.style_sheets.append('css/oneup.css')
-        self.javascript_src.append('js.googleanalytics')
+        self.javascript_src.append('js/googleanalytics.js')
 
         # nav
         self.nav = Nav()
