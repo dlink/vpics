@@ -12,7 +12,9 @@ create table page_pics (
         default current_timestamp on update current_timestamp,
   created datetime         default null,
 
-  unique key page_id_pic_id (page_id, pic_id)
+  unique key page_id_pic_id (page_id, pic_id),
+  foreign key (page_id) references pages (page_id),
+  foreign key (pic_id)  references pics  (pic_id)
 ) engine InnoDB;
 
 show warnings;
