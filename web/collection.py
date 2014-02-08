@@ -11,7 +11,7 @@ from pages import Pages, Page
 from nav import Nav
 
 DEFAULT_PAGE_ID = '1'
-NUM_COLS = 4
+NUM_COLS = 3
 THUMBNAILS = '200px'
 
 class Collection(HtmlPage):
