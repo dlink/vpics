@@ -86,7 +86,7 @@ class Collection(HtmlPage):
         pic_img = img(src=pic_url, class_='picImage')
         caption = self.picCaption(i) 
         href = "/oneup.py?id=%s" % self.page.pics[i].name
-        return div(a(pic_img + caption, href=href), class_='pic')
+        return center(div(a(pic_img + caption, href=href), class_='pic'))
 
     def picCaption(self, i):
         return div('<i>%s </i><small>%s</small>' % (self.page.pics[i].name,
