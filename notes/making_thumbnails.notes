@@ -1,0 +1,2 @@
+gm mogrify -resize 200 Place_Setting.jpg 
+

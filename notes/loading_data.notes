@@ -1,0 +1,2 @@
+ cd $vps; cat load_data.sql |vpicsdb -t --local-infile=1; cd -
+
