@@ -71,8 +71,8 @@ the <a href="http://en.wikipedia.org/wiki/Minimalism">Minimalist Movement</a> in
 
 <p>Recent</p>
 <ul>
-  <li>Apr 2013: <a href="http://baugallery.com">Bau Gallery<a/>, Beacon, NY - Member Group Show <i>Tasteless</i>
-  <li>Mar 2013: <a href="http://baugallery.com">Bau Gallery<a/>, Beacon, NY - New Gallery Members Show: <i>David Link and Art Murphy</i>
+  <li>Apr 2014: <a href="http://baugallery.com">Bau Gallery<a/>, Beacon, NY - Member Group Show <i>Tasteless</i>
+  <li>Mar 2014: <a href="http://baugallery.com">Bau Gallery<a/>, Beacon, NY - New Gallery Members Show: <i>David Link and Art Murphy</i>
   <li>Dec 2013 - Jan 2014: <a href="http://baugallery.com">Bau Gallery<a/>, Beacon, NY - Curated Group Show: <i>Saints and Sinners</i>
   <li>Dec 2013 - Jan 2014: <a href="http://www.catalystgallery.com/">The Catalyst Gallery</a>, Beacon, NY - Group Show
 </ul>
