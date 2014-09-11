@@ -33,6 +33,7 @@ class Collection(HtmlPage):
     def getHtmlContent(self):
         return \
             self.header() +\
+            self.messageLine() +\
             self.navAndDisplayArea()
            
     def process(self):
@@ -50,6 +51,17 @@ class Collection(HtmlPage):
             if results:
                 self.page = results[0]
             
+    def messageLine(self):
+        link = a('http://baugallery.com', 
+                 href="http://baugallery.com",
+                 target='_blank')
+        msg_lines = [font("Upcoming Solo Show", size="+2"),
+                     "Sep 13-Oct 4.  Opening Reception Sep 13 6-9.",
+                     "All new works, Large and Small",
+                     "Bau Gallery, Beacon, NY",
+                     link]
+        return center(font('<br/>'.join(msg_lines), color='blue'))
+    
     def navAndDisplayArea(self):
         table = HtmlTable()
         table.addRow([self.nav.nav(self.page.name),
