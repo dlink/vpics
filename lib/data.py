@@ -73,6 +73,10 @@ Internal Representation
                 # default pic name, if nec,  to filename minus extention
                 if 'name' not in pic:
                     pic.name = pic['filename'].split('.')[0]
+
+                # caption
+                if 'caption' not in pic:
+                    pic.caption = ''
                     
                 # add id:
                 pic.id = pic_id
