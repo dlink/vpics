@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-from vlib import conf
-
 from vweb.htmlpage import HtmlPage
 from vweb.htmltable import HtmlTable
 from vweb.html import *
@@ -18,7 +16,6 @@ class Collection(HtmlPage):
 
     def __init__(self):
         HtmlPage.__init__(self, 'Pics Page')
-        self.conf = conf.getInstance()        
         self.style_sheets.append('css/vpics.css')
         self.style_sheets.append('css/collection.css')
         self.javascript_src.append('js/googleanalytics.js')
@@ -37,6 +34,8 @@ class Collection(HtmlPage):
             self.navAndDisplayArea()
            
     def process(self):
+        self.page = self.pages.first_page
+        """
         # get page_id from form
         if 'id' in self.form:
             page_id = self.form['id'].value
@@ -50,17 +49,10 @@ class Collection(HtmlPage):
             results = self.pages.get('name = "%s"' % page_id)
             if results:
                 self.page = results[0]
-            
+               """
     def messageLine(self):
-        link = a('http://baugallery.com', 
-                 href="http://baugallery.com",
-                 target='_blank')
-        msg_lines = [font("Upcoming Solo Show", size="+2"),
-                     "Sep 13-Oct 4.  Opening Reception Sep 13 6-9.",
-                     "All new works, Large and Small",
-                     "Bau Gallery, Beacon, NY",
-                     link]
-        return center(font('<br/>'.join(msg_lines), color='blue'))
+        msg_lines = ['user message']
+        return center('<br/>'.join(msg_lines))
     
     def navAndDisplayArea(self):
         table = HtmlTable()
@@ -79,6 +71,8 @@ class Collection(HtmlPage):
 
         num_pics = len(self.page.pics)
         num_rows = ((num_pics-1)/NUM_COLS)+1
+        self.debug_msg += p('num_pics: %s' % num_pics)
+        self.debug_msg += p('num_rows: %s' % num_rows)
 
         table = HtmlTable(id='displayTable')
         i = 0
@@ -93,8 +87,25 @@ class Collection(HtmlPage):
         return div(table.getTable(), id='displayArea')
 
     def pic_div(self, i):
-        pic_url = "/%s/%s/%s" % (self.conf.media_dir, THUMBNAILS,
+        '''
+        <center>
+           <div class="pic">
+              <a href="/oneup.py?id=NAME">
+                 <img src="URL" class="picImage">
+                 <div class="picCaption">
+                    <i>NAME </i>
+                    <small>CAPTION</small>
+                 <div>
+              </a>
+           <div>
+        </center>
+        '''
+        #media_dir="/data/vpics"
+        media_dir="dev-vpics/images"
+
+        pic_url = "/%s/%s/%s" % (media_dir, THUMBNAILS,
                                  self.page.pics[i].filename)
+        #pic_url = "undetermined"
         pic_img = img(src=pic_url, class_='picImage')
         caption = self.picCaption(i) 
         href = "/oneup.py?id=%s" % self.page.pics[i].name
@@ -108,5 +119,6 @@ class Collection(HtmlPage):
     def pageNotFound(self):
         return div(p('No page found.'))
 
-Collection().go()
+if __name__ == '__main__':
+    Collection().go()
 
