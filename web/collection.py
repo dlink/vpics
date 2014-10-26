@@ -71,8 +71,6 @@ class Collection(HtmlPage):
 
         num_pics = len(self.page.pics)
         num_rows = ((num_pics-1)/NUM_COLS)+1
-        self.debug_msg += p('num_pics: %s' % num_pics)
-        self.debug_msg += p('num_rows: %s' % num_rows)
 
         table = HtmlTable(id='displayTable')
         i = 0
