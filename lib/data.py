@@ -9,70 +9,60 @@ FILENAME = '/data/vpics-images/vpics.conf'
 class DataException(Exception): pass
 
 class Data(object):
+    '''
+Input YAML structure:
+---------------------
+   pages:
+      - Sculptures
+      - Paintings
+ 
+   Sculptures:
+      - filename: Sinner.jpg
+      - filename: Angel.jpg
 
-    def __init__(self):
-        '''Input YAML structure:
-           ---------------------
-           pages          - list of page_names as STR
-           Each page_name - a list of pics as DICT
-
-              pages:
-                 - Sculptures
-            
-              Sculptures:
-                 - filename: Sinner.jpg
-             
-                 - filename: Angel.jpg
+   Paintings:
+      - filename: Tasteless.jpg
+      - filename: Budddha_watercolor.jpg 
 
 
-           Internal Representation
-           pages - a collection of pages as DICTs
-                   maintains numerical Id for ordering
-
-           Each Page - a collection of pics as DICTs
-                       maintians numerical Id for ordering within Page
-
-           pics - a collection of pics as DICTs (redundunt with 'Each Page')
-                  maintains numerical id for ordering accross all pics
-                  maintains 'page' to know which page it belongs to.
-
-              pages:
-                 Sculpture:
-                    id: 1
-                    name: Sulpture
-
-              Sculpture:
-                 Sinner:
-                    id: 1
-                    name: Sinner
-                    filename: Sinner.jpg
-                 Angel:
-                    id: 2
-                    name: Angel
-                    filename: Angel.jpg
-
-              Pics:
-                 Sinner:
-                    id: 1
-                    name: Sinner
-                    filename: Sinner.jpg
-                    page_name: Sculpture
-                 Angel:
-                    id: 2
-                    name: Angel
-                    filename: Angel.jpg
-                    page_name: Sculpture
+Internal Representation
+-----------------------
+   pages:
+      Sculpture:
+         id: 1
+         name: Sculpture
+         pics:
+            - odict( .. pic Sinner ..)
+            - odict( .. pic Angel ..)
+      Painting:
+         id: 2
+         name: Painting
+         pics:
+            - odict( .. Tasteless ..)
+            - odict( .. Buddha_watercolor ..)
+   Pics:
+      Sinner:
+         id: 1
+         name: Sinner
+         filename: Sinner.jpg
+         page_name: Sculpture
+      Angel:
+         id: 2
+         name: Angel
+         filename: Angel.jpg
+         page_name: Sculpture
+      ...
 
         '''
+
+    def __init__(self):
         # read yaml data:
         self.yaml_data = odict(yaml.load(open(FILENAME, 'r')))
 
-        # init internal data:
-        self.data = odict(pages=odict(), pics =odict())
-
         # build internal data:
-        for page_name in self.yaml_data.pages:
-            for id, pic in enumerate(self.yaml_data[page_name]):
+        self.data = odict(pages=odict(), pics =odict())
+        for page_id, page_name in enumerate(self.yaml_data.pages):
+            for pic_id, pic in enumerate(self.yaml_data[page_name]):
                 pic = odict(pic)
 
                 # pic must have filename
@@ -85,7 +75,7 @@ class Data(object):
                     pic.name = pic['filename'].split('.')[0]
                     
                 # add id:
-                pic.id = id
+                pic.id = pic_id
 
                 # add page_name
                 pic.page_name = page_name
@@ -93,22 +83,39 @@ class Data(object):
                 # store pic under pics:
                 self.data.pics[pic.name] = pic
 
-                # store pic under pages:
+                # store pic under pages
                 if page_name not in self.data.pages:
-                    self.data.pages[page_name] = odict()
-                self.data.pages[page_name][pic.name] = pic
+                    self.data.pages[page_name] = odict(id=page_id,
+                                                       name=page_name,
+                                                       pics=[])
+                self.data.pages[page_name].pics.append(pic)
 
-        #self.data
-        #for page_name in self.data.pages:
-        #    print 'page_name:', page_name
-        #    for pic in self.data[page_name]:
-        #        print 'pic:', pic
-        #        self.data.pics.append(pic)
+    
+    def dump(self):
+        '''Return a nicely formated data dump of internal data
+           suitable for printing
+        '''
+        o = ''
+        for key1, value1 in data.data.items():
+            o += "%s:\n" % key1
+            for key2, value2 in value1.items():
+                o += "   %s:\n" % key2
+                for key3, value3 in value2.items():
+                    display = value3
+                    if key3 == 'pics':
+                        display = '; '.join([x['name'] for x in value3])
+                    o += "      %s: %s\n" % (key3, display)
+            o += '\n'
+        return o
+
 
 if __name__ == '__main__':
     from vlib.utils import pretty
 
+    # display data:
     data = Data()
+    print 'Yaml Data:'
     print pretty(data.yaml_data)
     print
-    print pretty(data.data)
+    print 'Internal Data:'
+    print data.dump()
