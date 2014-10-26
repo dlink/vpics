@@ -4,8 +4,7 @@ import unittest
 
 from pages import Pages, Page
 
-PAGE_ID = 1
-PAGE_NAME = 'Sculpture'
+PAGE_NAME = 'Sculptures'
 
 class TestPages(unittest.TestCase):
 
@@ -13,20 +12,16 @@ class TestPages(unittest.TestCase):
         self.pages = Pages()
 
     def test_pages_list_all(self):
-        num = len(self.pages.get())
-        self.assertTrue(num)
+        num = len(self.pages.getAll())
+        self.assertTrue(num>0)
 
     def test_page_get(self):
-        page = Page(PAGE_ID)
-        self.assertTrue(PAGE_ID, page.page_id)
+        page = Page(PAGE_NAME)
+        self.assertEqual(PAGE_NAME, page.name)
 
-    def test_page_get_name(self):
-        page = self.pages.get(filter="name = '%s'" % PAGE_NAME)[0]
-        self.assertTrue(PAGE_NAME, page.name)
-                           
     def test_page_pics(self):
-        page = Page(PAGE_ID)
-        self.assertTrue(len(page.pics))
+        page = Page(PAGE_NAME)
+        self.assertTrue(len(page.pics)>0)
 
 if __name__ == '__main__':
     unittest.main()
