@@ -1,42 +1,27 @@
-from vlib import db
-from vlib.datatable import DataTable
+from data import Data
 
-from pics import Pic
-from pagepics import PagePics
-
-class Pages(DataTable):
+class Pages(object):
     '''Preside over Pages Database Table'''
 
     def __init__(self):
-        self.db = db.getInstance()
-        DataTable.__init__(self, self.db, 'pages')
+        self.data = Data().data.pages
         
-    def get(self, filter=None):
-        '''Given an optional SQL filter, or None for All
-           Return a list of Page Objects
+    def getAll(self):
+        '''Return a list of Page Objects
         '''
-        o = []
-        for row in DataTable.get(self, filter):
-            o.append(Page(row['page_id']))
-        return o
+        return self.data
 
-class Page(DataTable):
+class Page(object):
     '''Preside over Pages Database Table Records'''
 
-    def __init__(self, page_id):
-        self.db = db.getInstance()
-        DataTable.__init__(self, self.db, 'pages')
-        self.data = self.get('page_id = %s' % page_id)[0]
-        self.__dict__.update(self.data)
+    def __init__(self, name):
+        self.data = Data().data.pages[name]
+
+    @property
+    def name(self):
+        return self.data.name
 
     @property
     def pics(self):
-        if '_pics' not in self.__dict__:
-            self._pics = []
-            #for row in PagePics().get('page_id = "%s"' % self.page_id):
-            pagePics = PagePics()
-            pagePics.setFilters('page_id = "%s"' % self.page_id)
-            pagePics.setOrderBy('seq_num')
-            for row in pagePics.getTable():
-                self._pics.append(Pic(row['pic_id']))
-        return self._pics
+        return self.data.pics
+
