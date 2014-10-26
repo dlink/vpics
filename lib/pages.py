@@ -11,6 +11,17 @@ class Pages(object):
         '''
         return self.data
 
+    @property
+    def first_page(self):
+        '''Return and instantiated Page that has the lowest id'''
+        min_page_id = None
+        page_name = None
+        for page_name, data in self.data.items():
+            if not min_page_id or data.id < min_page_id:
+                min_page_id = data.id
+                name = data.name
+        return Page(page_name)
+                    
 class Page(object):
     '''Preside over Pages Database Table Records'''
 
@@ -25,3 +36,5 @@ class Page(object):
     def pics(self):
         return self.data.pics
 
+    def __repr__(self):
+        return '<pages.Page(%s) object>' % self.name

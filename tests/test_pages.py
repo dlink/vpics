@@ -23,5 +23,9 @@ class TestPages(unittest.TestCase):
         page = Page(PAGE_NAME)
         self.assertTrue(len(page.pics)>0)
 
+    def test_first_page(self):
+        page = self.pages.first_page
+        self.assertEqual(page.name, PAGE_NAME)
+
 if __name__ == '__main__':
     unittest.main()
