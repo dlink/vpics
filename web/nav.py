@@ -1,10 +1,13 @@
 # Navigation - An HTML Partial
 
 from vweb.html import * 
+import data
 
 SP = '&nbsp;'
 
 class Nav(object):
+    def __init__(self):
+        self.data = data.getInstance()
 
     def style_sheets(self):
         return 'css/nav.css'
@@ -13,6 +16,9 @@ class Nav(object):
         '''Draw Navigation Menu.
            Pass in the name of the current selection.
         '''
+
+        for page in self.data.pages:
+            
         menu = [
             ['Sculpture'   , 'collection.py?id=sculpture'],
             ['Drawings'    , 'collection.py?id=drawings'],
