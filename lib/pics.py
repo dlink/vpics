@@ -23,29 +23,4 @@ class Pic(object):
     '''Preside over a single Pic's Data'''
 
     def __init__(self, name):
-        self.data = data.getInstance().pics[name]
-
-    @property
-    def id(self):
-        return self.data.id
-
-    @property
-    def name(self):
-        return self.data.name
-
-    @property
-    def caption(self):
-        return self.data.caption
-
-    @property
-    def description(self):
-        return self.data.description
-
-    @property
-    def page_name(self):
-        return self.data.page_name
-
-    @property
-    def filename(self):
-        return self.data.filename
-
+        self.__dict__.update(data.getInstance().pics[name])

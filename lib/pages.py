@@ -38,19 +38,14 @@ class Page(object):
     '''Preside over Pages Database Table Records'''
 
     def __init__(self, name):
-        #self.data = Data().data.pages[name]
-        self.data = data.getInstance().pages[name]
+        self.__dict__.update(data.getInstance().pages[name])
 
-    @property
-    def name(self):
-        return self.data.name
-
-    @property
-    def pics(self):
-        '''Using data's list of pic odicts
-           Instatiate each and return list of Pic Objects
-        '''
-        return [Pic(p.name) for p in self.data.pics]
+    #@property
+    #def pics(self):
+    #    '''Using data's list of pic odicts
+    #       Instatiate each and return list of Pic Objects
+    #    '''
+    #    return [Pic(p.name) for p in self.data.pics]
 
     def __repr__(self):
         return '[pages.Page(%s) object]' % self.name
