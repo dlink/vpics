@@ -1,7 +1,9 @@
 from data import Data
+from pics import Pic
 
 class Pages(object):
-    '''Preside over Pages Database Table'''
+    '''Preside over Pages Data
+    '''
 
     def __init__(self):
         self.data = Data().data.pages
@@ -34,7 +36,10 @@ class Page(object):
 
     @property
     def pics(self):
-        return self.data.pics
+        '''Using data's list of pic odicts
+           Instatiate each and return list of Pic Objects
+        '''
+        return [Pic(p.name) for p in self.data.pics]
 
     def __repr__(self):
         return '<pages.Page(%s) object>' % self.name
