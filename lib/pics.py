@@ -26,8 +26,9 @@ class Pic(object):
         self.data = Data().data.pics[name]
 
     @property
-    def pic_id(self):
-        return 'x'
+    def id(self):
+        return self.data['id']
+
     @property
     def name(self):
         return self.data['name']
