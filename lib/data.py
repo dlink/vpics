@@ -61,8 +61,8 @@ Internal Representation
 
         # build internal data:
         self.data = odict(pages=odict(), pics =odict())
-        for page_id, page_name in enumerate(self.yaml_data.pages):
-            for pic_id, pic in enumerate(self.yaml_data[page_name]):
+        for page_id, page_name in enumerate(self.yaml_data.pages, start=1):
+            for pic_id, pic in enumerate(self.yaml_data[page_name], start=1):
                 pic = odict(pic)
 
                 # pic must have filename
