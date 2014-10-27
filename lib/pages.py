@@ -27,7 +27,7 @@ class Pages(object):
         return Page(page_name)
     @property
     def list(self):
-        '''Return a list of instantiated Page objects in id order''
+        '''Return a list of instantiated Page objects in id order'''
         page_ids = {}
         for page_name, data in self.data.items():
             page_ids[data.id] = Page(data.name)
