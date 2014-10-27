@@ -9,8 +9,6 @@ from pics import Pics, Pic
 
 from nav import Nav
 
-DEFAULT_PIC_ID = 1
-
 class Oneup(HtmlPage):
 
     def __init__(self):
@@ -29,20 +27,7 @@ class Oneup(HtmlPage):
     def process(self):
         pic_name = self.form['id'].value
         self.pic = Pic(pic_name)
-        self.debug_msg += 'pic: %s' % self.pic.name
-        '''
-        # get pic_id from form
-        if 'id' in self.form:
-            pic_id = self.form['id'].value
-        else:
-            pic_id = DEFAULT_PIC_ID
 
-        # get Pic Object
-        if pic_id.isdigit():
-            self.pic = Pic(pic_id)
-        else:
-            self.pic = self.pics.get('name = "%s"' % pic_id)[0]
-        '''
     def getHtmlContent(self):
         return \
             self.header() +\
@@ -63,60 +48,46 @@ class Oneup(HtmlPage):
         return div(self.pic_div(), id='displayArea')
 
     def pic_div(self):
-        '''
-        <div
-        '''
         # hard coding
         media_dir="dev-vpics/images" 
 
-        collections = ''  #self.picCollections()
         pic_url = "/%s/%s" % (media_dir, self.pic.filename)
         pic_img = img(src=pic_url, class_='picImage')
         picNav = self.picNav()
         caption = self.picCaption() 
         description = self.picDescription()
-        return div(collections + picNav + pic_img + caption + hr() + description, 
+        return div(picNav + pic_img + caption + hr() + description,
                    class_='pic')
 
-    #def picCollections(self):
-    #    collections = []
-    #    for row in self.pic.pages:
-    #        page = Page(row['page_id'])
-    #        
-    #        collections.append(a(page.name, href='collection.py?id=%s' 
-    #                             % page.name))
-    #    return div('Tags: ' + ', '.join(collections), class_='picCollections')
-
     def picNav(self):
-        #page = Page(self.pic.pages[0]['page_id'])
         page = Page(self.pic.page_name)
 
-        prev_pic_id = None
-        next_pic_id = None
-        old_pic_id = None
+        prev_pic_name = None
+        next_pic_name = None
+        old_pic_name = None
         found = 0
 
-        # loop thru first page of pics, find prev and next pic_ids
+        # loop thru first page of pics, find prev and next pic_names
         for pic in page.pics:
-            pic_id = pic.id
+            pic_name = pic.name
             if found:
-                next_pic_id = pic_id
+                next_pic_name = pic_name
                 break
-            if pic_id == self.pic.id:
-                if old_pic_id:
-                    prev_pic_id = old_pic_id
+            if pic_name == self.pic.name:
+                if old_pic_name:
+                    prev_pic_name = old_pic_name
                 found = 1
-            old_pic_id = pic_id
+            old_pic_name = pic_name
 
         #prev
-        if prev_pic_id:
-            prev = a('prev', href='oneup.py?id=%s' % prev_pic_id)
+        if prev_pic_name:
+            prev = a('prev', href='oneup.py?id=%s' % prev_pic_name)
         else:
             prev = font('prev', color='lightgrey')
 
         # next
-        if next_pic_id:
-            next = a('next', href='oneup.py?id=%s' % next_pic_id)
+        if next_pic_name:
+            next = a('next', href='oneup.py?id=%s' % next_pic_name)
         else:
             next = font('next', color='lightgrey')
         return div('%s | %s' % (prev, next), class_='picNav')
@@ -129,5 +100,6 @@ class Oneup(HtmlPage):
     def picDescription(self):
         return div(self.pic.description or '', class_='picDescription')
 
-Oneup().go()
+if __name__ == '__main__':
+    Oneup().go()
 

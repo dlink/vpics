@@ -8,7 +8,6 @@ from env import Env
 from pages import Pages, Page
 from nav import Nav
 
-DEFAULT_PAGE_ID = '1'
 NUM_COLS = 3
 THUMBNAILS = '200px'
 
@@ -36,21 +35,7 @@ class Collection(HtmlPage):
            
     def process(self):
         self.page = self.pages.first_page
-        """
-        # get page_id from form
-        if 'id' in self.form:
-            page_id = self.form['id'].value
-        else:
-            page_id = DEFAULT_PAGE_ID
 
-        # get Page Object
-        if page_id.isdigit():
-            self.page = Page(page_id)
-        else:
-            results = self.pages.get('name = "%s"' % page_id)
-            if results:
-                self.page = results[0]
-               """
     def messageLine(self):
         msg_lines = ['user message']
         return center('<br/>'.join(msg_lines))
@@ -105,7 +90,6 @@ class Collection(HtmlPage):
 
         pic_url = "/%s/%s/%s" % (media_dir, THUMBNAILS,
                                  self.page.pics[i].filename)
-        #pic_url = "undetermined"
         pic_img = img(src=pic_url, class_='picImage')
         caption = self.picCaption(i) 
         href = "%s/oneup.py?id=%s" % (self.env.base_url, 
