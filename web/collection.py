@@ -4,8 +4,8 @@ from vweb.htmlpage import HtmlPage
 from vweb.htmltable import HtmlTable
 from vweb.html import *
 
+from env import Env
 from pages import Pages, Page
-
 from nav import Nav
 
 DEFAULT_PAGE_ID = '1'
@@ -24,6 +24,7 @@ class Collection(HtmlPage):
         self.nav = Nav()
         self.style_sheets.append(self.nav.style_sheets())
 
+        self.env = Env()
         self.pages = Pages()
         self.page = None
 
@@ -98,6 +99,7 @@ class Collection(HtmlPage):
            <div>
         </center>
         '''
+        # hard coding
         #media_dir="/data/vpics"
         media_dir="dev-vpics/images"
 
@@ -106,7 +108,8 @@ class Collection(HtmlPage):
         #pic_url = "undetermined"
         pic_img = img(src=pic_url, class_='picImage')
         caption = self.picCaption(i) 
-        href = "/oneup.py?id=%s" % self.page.pics[i].name
+        href = "%s/oneup.py?id=%s" % (self.env.base_url, 
+                                      self.page.pics[i].name)
         return center(div(a(pic_img + caption, href=href), class_='pic'))
 
     def picCaption(self, i):

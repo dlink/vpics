@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-from vlib import conf
-
 from vweb.htmlpage import HtmlPage
 from vweb.htmltable import HtmlTable
 from vweb.html import *
@@ -17,7 +15,6 @@ class Oneup(HtmlPage):
 
     def __init__(self):
         HtmlPage.__init__(self, 'Oneup')
-        self.conf = conf.getInstance()        
         self.style_sheets.append('css/vpics.css')
         self.style_sheets.append('css/oneup.css')
         self.javascript_src.append('js/googleanalytics.js')
@@ -30,6 +27,10 @@ class Oneup(HtmlPage):
         self.pic = None
 
     def process(self):
+        pic_name = self.form['id'].value
+        self.pic = Pic(pic_name)
+        self.debug_msg += 'pic: %s' % self.pic.name
+        '''
         # get pic_id from form
         if 'id' in self.form:
             pic_id = self.form['id'].value
@@ -41,7 +42,7 @@ class Oneup(HtmlPage):
             self.pic = Pic(pic_id)
         else:
             self.pic = self.pics.get('name = "%s"' % pic_id)[0]
-
+        '''
     def getHtmlContent(self):
         return \
             self.header() +\
@@ -62,8 +63,14 @@ class Oneup(HtmlPage):
         return div(self.pic_div(), id='displayArea')
 
     def pic_div(self):
+        '''
+        <div
+        '''
+        # hard coding
+        media_dir="dev-vpics/images" 
+
         collections = ''  #self.picCollections()
-        pic_url = "/%s/%s" % (self.conf.media_dir, self.pic.filename)
+        pic_url = "/%s/%s" % (media_dir, self.pic.filename)
         pic_img = img(src=pic_url, class_='picImage')
         picNav = self.picNav()
         caption = self.picCaption() 
@@ -71,17 +78,18 @@ class Oneup(HtmlPage):
         return div(collections + picNav + pic_img + caption + hr() + description, 
                    class_='pic')
 
-    def picCollections(self):
-        collections = []
-        for row in self.pic.pages:
-            page = Page(row['page_id'])
-            
-            collections.append(a(page.name, href='collection.py?id=%s' 
-                                 % page.name))
-        return div('Tags: ' + ', '.join(collections), class_='picCollections')
+    #def picCollections(self):
+    #    collections = []
+    #    for row in self.pic.pages:
+    #        page = Page(row['page_id'])
+    #        
+    #        collections.append(a(page.name, href='collection.py?id=%s' 
+    #                             % page.name))
+    #    return div('Tags: ' + ', '.join(collections), class_='picCollections')
 
     def picNav(self):
-        page = Page(self.pic.pages[0]['page_id'])
+        #page = Page(self.pic.pages[0]['page_id'])
+        page = Page(self.pic.page_name)
 
         prev_pic_id = None
         next_pic_id = None
@@ -90,11 +98,11 @@ class Oneup(HtmlPage):
 
         # loop thru first page of pics, find prev and next pic_ids
         for pic in page.pics:
-            pic_id = pic.pic_id
+            pic_id = pic.id
             if found:
                 next_pic_id = pic_id
                 break
-            if pic_id == self.pic.pic_id:
+            if pic_id == self.pic.id:
                 if old_pic_id:
                     prev_pic_id = old_pic_id
                 found = 1
