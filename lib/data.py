@@ -58,7 +58,7 @@ Internal Representation
     def __init__(self):
         # Read yaml data:
         self.yaml_data = odict(yaml.load(open(FILENAME, 'r')))
-
+        
         # Build internal data (odicts)
         self.data = odict(pages=odict(), pics =odict())
         for page_id, page_name in enumerate(self.yaml_data.pages, start=1):
@@ -109,6 +109,11 @@ Internal Representation
             o += '\n'
         return o
 
+__data = Data().data
+def getInstance():
+    '''Return a single instance of Data()'s data property
+    '''
+    return __data
 
 if __name__ == '__main__':
     from vlib.utils import pretty

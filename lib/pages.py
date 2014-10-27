@@ -1,4 +1,5 @@
-from data import Data
+#from data import Data
+import data
 from pics import Pic
 
 class Pages(object):
@@ -6,7 +7,8 @@ class Pages(object):
     '''
 
     def __init__(self):
-        self.data = Data().data.pages
+        #self.data = Data().data.pages
+        self.data = data.getInstance().pages
         
     def getAll(self):
         '''Return a list of Page Objects
@@ -28,7 +30,8 @@ class Page(object):
     '''Preside over Pages Database Table Records'''
 
     def __init__(self, name):
-        self.data = Data().data.pages[name]
+        #self.data = Data().data.pages[name]
+        self.data = data.getInstance().pages[name]
 
     @property
     def name(self):

@@ -1,10 +1,10 @@
-from data import Data
+import data
 
 class Pics(object): # DataTable):
     '''Preside over Pics Data'''
 
     def __init__(self):
-        self.data = Data().data.pics
+        self.data = data.getInstance().pics
     
     def get(self, page=None):
         '''Given an optional page name, or None for All
@@ -23,7 +23,7 @@ class Pic(object):
     '''Preside over a single Pic's Data'''
 
     def __init__(self, name):
-        self.data = Data().data.pics[name]
+        self.data = data.getInstance().pics[name]
 
     @property
     def id(self):
