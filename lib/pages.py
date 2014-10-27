@@ -25,6 +25,7 @@ class Pages(object):
                 min_page_id = data.id
                 name = data.name
         return Page(page_name)
+
     @property
     def list(self):
         '''Return a list of instantiated Page objects in id order'''
@@ -52,4 +53,4 @@ class Page(object):
         return [Pic(p.name) for p in self.data.pics]
 
     def __repr__(self):
-        return '<pages.Page(%s) object>' % self.name
+        return '[pages.Page(%s) object]' % self.name

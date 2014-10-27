@@ -34,7 +34,10 @@ class Collection(HtmlPage):
             self.navAndDisplayArea()
            
     def process(self):
-        self.page = self.pages.first_page
+        if 'id' in self.form:
+            self.page = Page(self.form['id'].value)
+        else:
+            self.page = self.pages.first_page
 
     def messageLine(self):
         msg_lines = ['user message']
