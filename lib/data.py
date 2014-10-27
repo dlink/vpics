@@ -56,10 +56,10 @@ Internal Representation
         '''
 
     def __init__(self):
-        # read yaml data:
+        # Read yaml data:
         self.yaml_data = odict(yaml.load(open(FILENAME, 'r')))
 
-        # build internal data:
+        # Build internal data (odicts)
         self.data = odict(pages=odict(), pics =odict())
         for page_id, page_name in enumerate(self.yaml_data.pages, start=1):
             for pic_id, pic in enumerate(self.yaml_data[page_name], start=1):
@@ -70,19 +70,16 @@ Internal Representation
                     raise DataException('pic does not contain filename: %s' 
                                         % pic)
 
-                # default pic name, if nec,  to filename minus extention
+                # init pic odict data
                 if 'name' not in pic:
                     pic.name = pic['filename'].split('.')[0]
-
-                # caption
                 if 'caption' not in pic:
                     pic.caption = ''
-                    
-                # add id:
+                if 'description' not in pic:
+                    pic.description = ''
                 pic.id = pic_id
-
-                # add page_name
                 pic.page_name = page_name
+
 
                 # store pic under pics:
                 self.data.pics[pic.name] = pic
