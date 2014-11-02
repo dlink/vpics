@@ -55,12 +55,17 @@ Internal Representation
 
         '''
 
-    def __init__(self):
+    def __init__(self, filename=FILENAME):
+        # TODO : default fiename to ENV
+
         # Read yaml data:
-        self.yaml_data = odict(yaml.load(open(FILENAME, 'r')))
+        print 'f:', filename
+        self.yaml_data = odict(yaml.load(open(filename, 'r')))
         
         # Build internal data (odicts)
         self.data = odict(pages=odict(), pics =odict())
+        if not self.yaml_data.pages: # empty config
+            return 
         for page_id, page_name in enumerate(self.yaml_data.pages, start=1):
             for pic_id, pic in enumerate(self.yaml_data[page_name], start=1):
                 pic = odict(pic)
@@ -108,6 +113,11 @@ Internal Representation
                     o += "      %s: %s\n" % (key3, display)
             o += '\n'
         return o
+
+def createConfigFile(filename):
+    fp = open(filename, 'w')
+    fp.write ('pages: ~\n')
+    fp.close()
 
 __data = Data().data
 def getInstance():

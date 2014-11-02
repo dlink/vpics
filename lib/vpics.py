@@ -8,7 +8,14 @@ import copy
 #import vlib.conf as conf
 #import vlib.logger as logger
 
+from data import Data
+import data
+
 VERBOSE = 0
+
+CONF_NAME = 'vpics.conf'
+
+class VPicsError(Exception): pass
 
 class VPics(object):
 
@@ -23,9 +30,26 @@ class VPics(object):
             self.verbose = 1
             args = args[1:]
 
-        if not args:
+        if len(args) < 2:
             syntax()
 
+        cmd = args[0]
+        subdir = args[1].rstrip('/')
+
+        if cmd != 'update':
+            raise VPicsError('Unrecognized Command: %s' % cmd)
+        
+        # validate subdir
+        if not os.path.isdir(subdir):
+            raise VPicsError('%s is not a subdirectlry' % subdir)
+
+        # set config file:
+        filename = "%s/%s" % (subdir, CONF_NAME)
+        print 'filename:', filename
+        if not os.path.isfile(filename):
+            data.createConfigFile(filename)
+        self.data = Data(filename)
+        return self.data
         
 def syntax(emsg=None):
     prog = os.path.basename(sys.argv[0])
@@ -34,7 +58,7 @@ def syntax(emsg=None):
     ws = ' '*len(prog)
 
     print
-    print "   %s hi" % prog
+    print "   %s update <subdir>" % prog
     print
     sys.exit(1)
 
