@@ -26,27 +26,7 @@ class VPics(object):
         if not args:
             syntax()
 
-        signature = 'biengine ' + ' '.join(args)
-        self.locks.lock(signature)
-        try:
-            result = self.process_candy(*args)
-            return result
-        except Exception, e:
-            if isinstance(e, BIEngineParameterError):
-                self.logger.error('%s: %s' % (signature, e))
-            else:
-                self.logger.critical('%s: %s' % (signature, e))
-            
-            import traceback
-            filename = self.conf['tracebacklog']
-            f=open(filename, 'a')
-            f.write('\n%s\n' % datetime.now())
-            traceback.print_exc(file=f)
-            f.close()
-            raise
-        finally:
-            self.locks.unlock(signature)
-
+        
 def syntax(emsg=None):
     prog = os.path.basename(sys.argv[0])
     if emsg:
