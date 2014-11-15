@@ -59,7 +59,7 @@ Internal Representation
         # TODO : default fiename to ENV
 
         # Read yaml data:
-        print 'f:', filename
+        #print 'f:', filename
         self.yaml_data = odict(yaml.load(open(filename, 'r')))
         
         # Build internal data (odicts)
@@ -114,10 +114,10 @@ Internal Representation
             o += '\n'
         return o
 
-def createConfigFile(filename):
-    fp = open(filename, 'w')
-    fp.write ('pages: ~\n')
-    fp.close()
+#def createConfigFile(filename):
+#    fp = open(filename, 'w')
+#    fp.write ('pages: ~\n')
+#    fp.close()
 
 __data = Data().data
 def getInstance():
