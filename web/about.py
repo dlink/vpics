@@ -67,17 +67,40 @@ the <a href="http://en.wikipedia.org/wiki/Minimalism">Minimalist Movement</a> in
 
 <p>&nbsp;</p>
 
-<h3>Shows</h3>
+<h3>Upcoming Shows</h3>
 
-<p>Recent</p>
 <ul>
-  <li>Apr 2014: <a href="http://baugallery.com">Bau Gallery<a/>, Beacon, NY - Member Group Show <i>Tasteless</i>
-  <li>Mar 2014: <a href="http://baugallery.com">Bau Gallery<a/>, Beacon, NY - New Gallery Members Show: <i>David Link and Art Murphy</i>
-  <li>Dec 2013 - Jan 2014: <a href="http://baugallery.com">Bau Gallery<a/>, Beacon, NY - Curated Group Show: <i>Saints and Sinners</i>
-  <li>Dec 2013 - Jan 2014: <a href="http://www.catalystgallery.com/">The Catalyst Gallery</a>, Beacon, NY - Group Show
+  <li>12/13/2014 - 1/4/2015: <a href="http://www.garrisonartcenter.org/">Garrison Art Center<a/>, Garrison, NY - 2nd annual smallWORKS show.<p>
 </ul>
 
-<pe>Previous</p>
+
+<h3>Ongoing Shows</h3>
+
+<ul>
+  <li>Oct 2014: <a href="http://www.putnamartscouncil.com/">Putnam Art Council<a/>, Mahopac, NY - 2014 Juried Fine Arts Show: Awarded Third Place for <a href="/oneup.py?id=Tower">Tower</a>, and <a href="/oneup.py?id=temple">Temple</a>.<p>
+   <li><a href="http://baugallery.com">Bau Gallery<a/>, Beacon, NY - Member Gallery.</p>
+
+</ul>
+
+<h3>Past Shows</h3>
+
+<ul>
+
+  <li>Sept 2014: <a href="http://baugallery.com">Bau Gallery<a/>, Beacon, NY - Solo Show: <a href="http://baugallery.com/bau-117">Form, Space and Color</a><p>
+
+  <li>Aug - Oct 2014: <a href="http://collaborativeconcepts.org/">Collaborative Concepts<a/>, Garrison, NY - OUTDOORS Farm Project 2014.  <a href="/oneup.py?id=Stargazer">Stargazer</a>.<p>
+
+  <li>Apr 2014: <a href="http://baugallery.com">Bau Gallery<a/>, Beacon, NY - Member Group Show <i>Tasteless</i><p>
+
+  <li>Mar 2014: <a href="http://baugallery.com">Bau Gallery<a/>, Beacon, NY - New Gallery Members Show: <i>David Link and Art Murphy</i><p>
+
+  <li>Dec 2013 - Jan 2014: <a href="http://baugallery.com">Bau Gallery<a/>, Beacon, NY - Curated Group Show: <i>Saints and Sinners</i><p>
+
+  <li>Dec 2013 - Jan 2014: <a href="http://www.catalystgallery.com/">The Catalyst Gallery</a>, Beacon, NY - Group Show<p>
+</ul>
+
+
+<!-- p>Previous</p>
 <ul>
   <li> Manhole Drawing Series.  Ossining Art Council, 1995
   <li> Public Mural: Computer Motif, Cuernavaca, Mexico, House Paint, 12'x8', 1992
@@ -85,7 +108,7 @@ the <a href="http://en.wikipedia.org/wiki/Minimalism">Minimalist Movement</a> in
   <li> Public Mural: Biomophic Forms, Oyster Bay, NY, House Paint, 25'x8', 1983 
   <li> Large Outdoor Sculpture, Purchase, NY, 8'x4'x4', steel, 1982
   <li> Large Outdoor Sculpture, Oyster Bay, NY, 10'x10'x10', plywood and 2x4s, 1977
-</ul>
+</ul -- >
 
 
    </td>

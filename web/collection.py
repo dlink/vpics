@@ -27,6 +27,8 @@ class Collection(HtmlPage):
         self.nav = Nav()
         self.style_sheets.append(self.nav.style_sheets())
 
+        # todo: give an error page if database fails
+
         self.pages = Pages()
         self.page = None
 
@@ -52,6 +54,7 @@ class Collection(HtmlPage):
                 self.page = results[0]
             
     def messageLine(self):
+        '''
         link = a('http://baugallery.com', 
                  href="http://baugallery.com",
                  target='_blank')
@@ -61,7 +64,9 @@ class Collection(HtmlPage):
                      "Bau Gallery, Beacon, NY",
                      link]
         return center(font('<br/>'.join(msg_lines), color='blue'))
-    
+        '''
+        return ''
+
     def navAndDisplayArea(self):
         table = HtmlTable()
         table.addRow([self.nav.nav(self.page.name),
