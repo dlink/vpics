@@ -1,2 +1,4 @@
- cd $vps; cat load_data.sql |vpicsdb -t --local-infile=1; cd -
+cd $vps; cat load_data.sql |vpicsdb -t --local-infile=1; cd -
+
+cd /apps/vpics/sql; cat load_data.sql |vpicsdb -t --local-infile=1; cd -
 
