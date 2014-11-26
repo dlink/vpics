@@ -4,9 +4,10 @@ import yaml
 
 from vlib.odict import odict
 
-FILENAME = '/data/vpics-images/vpics.conf'
+#FILENAME = '/data/vpics-images/vpics.conf'
+FILENAME = '/data/dev-vpics/vpics.yaml'
 
-class DataException(Exception): pass
+class DataError(Exception): pass
 
 class Data(object):
     '''
@@ -17,107 +18,39 @@ Input YAML structure:
       - Paintings
  
    Sculptures:
-      - filename: Sinner.jpg
-      - filename: Angel.jpg
+      - pics:
+         - filename: Sinner.jpg
+         - filename: Angel.jpg
 
    Paintings:
-      - filename: Tasteless.jpg
-      - filename: Budddha_watercolor.jpg 
+      - pics:
+         - filename: Tasteless.jpg
+         - filename: Budddha_watercolor.jpg 
+   About:
+      - html:
+        - filename: about.html
+'''
 
-
-Internal Representation
------------------------
-   pages:
-      Sculpture:
-         id: 1
-         name: Sculpture
-         pics:
-            - odict( .. pic Sinner ..)
-            - odict( .. pic Angel ..)
-      Painting:
-         id: 2
-         name: Painting
-         pics:
-            - odict( .. Tasteless ..)
-            - odict( .. Buddha_watercolor ..)
-   Pics:
-      Sinner:
-         id: 1
-         name: Sinner
-         filename: Sinner.jpg
-         page_name: Sculpture
-      Angel:
-         id: 2
-         name: Angel
-         filename: Angel.jpg
-         page_name: Sculpture
-      ...
-
-        '''
 
     def __init__(self, filename=FILENAME):
         # TODO : default fiename to ENV
 
-        # Read yaml data:
-        #print 'f:', filename
-        self.yaml_data = odict(yaml.load(open(filename, 'r')))
-        
-        # Build internal data (odicts)
-        self.data = odict(pages=odict(), pics =odict())
-        if not self.yaml_data.pages: # empty config
-            return 
-        for page_id, page_name in enumerate(self.yaml_data.pages, start=1):
-            for pic_id, pic in enumerate(self.yaml_data[page_name], start=1):
-                pic = odict(pic)
+        self.filename = filename
+        self.data = odict(yaml.load(open(filename, 'r')))
+        self.validateData()
 
-                # pic must have filename
-                if 'filename' not in pic:
-                    raise DataException('pic does not contain filename: %s' 
-                                        % pic)
+    def validateData(self):
+        filename = self.filename
 
-                # init pic odict data
-                if 'name' not in pic:
-                    pic.name = pic['filename'].split('.')[0]
-                if 'caption' not in pic:
-                    pic.caption = ''
-                if 'description' not in pic:
-                    pic.description = ''
-                pic.id = pic_id
-                pic.page_name = page_name
+        # has pages key:
+        if 'pages' not in self.data:
+            raise DataError("%s: 'pages' not found" % filename)
 
-
-                # store pic under pics:
-                self.data.pics[pic.name] = pic
-
-                # store pic under pages
-                if page_name not in self.data.pages:
-                    self.data.pages[page_name] = odict(id=page_id,
-                                                       name=page_name,
-                                                       pics=[])
-                self.data.pages[page_name].pics.append(pic)
-
-    
-    def dump(self):
-        '''Return a nicely formated data dump of internal data
-           suitable for printing
-        '''
-        o = ''
-        for key1, value1 in data.data.items():
-            o += "%s:\n" % key1
-            for key2, value2 in value1.items():
-                o += "   %s:\n" % key2
-                for key3, value3 in value2.items():
-                    display = value3
-                    if key3 == 'pics':
-                        display = '; '.join([x['name'] for x in value3])
-                    o += "      %s: %s\n" % (key3, display)
-            o += '\n'
-        return o
-
-#def createConfigFile(filename):
-#    fp = open(filename, 'w')
-#    fp.write ('pages: ~\n')
-#    fp.close()
+        # each page has entry
+        for page_name in self.data.pages:
+            if page_name not in self.data:
+                raise DataError("%s: page definition for '%s' not found." 
+                                % (filename, page_name))
 
 __data = Data().data
 def getInstance():
@@ -126,12 +59,7 @@ def getInstance():
     return __data
 
 if __name__ == '__main__':
-    from vlib.utils import pretty
-
-    # display data:
-    data = Data()
-    print 'Yaml Data:'
-    print pretty(data.yaml_data)
-    print
-    print 'Internal Data:'
-    print data.dump()
+    from pprint import pprint
+    data = getInstance()
+    print 'Data Dump:'
+    print pprint(data)
