@@ -54,7 +54,7 @@ class VPics(object):
         return 'Done'
         
     def createConfig(self):
-        return 'x'
+        return 'TBD'
 
 def syntax(emsg=None):
     prog = os.path.basename(sys.argv[0])
