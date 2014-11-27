@@ -4,8 +4,8 @@ import unittest
 
 from pages import Pages, Page
 
-PAGE_NAME = 'Sculptures'
-PAGE_NAME2 = 'Paintings'
+PAGE_NAME = 'sculptures'
+PAGE_NAME2 = 'paintings'
 
 class TestPages(unittest.TestCase):
 
@@ -31,7 +31,7 @@ class TestPages(unittest.TestCase):
     def test_order_list(self):
         page_list = self.pages.list
         page_names_list = [p.name for p in page_list]
-        self.assertEqual([PAGE_NAME, PAGE_NAME2], page_names_list)
+        self.assertEqual([PAGE_NAME, PAGE_NAME2], page_names_list[0:2])
                           
 if __name__ == '__main__':
     unittest.main()
