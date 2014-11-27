@@ -55,6 +55,20 @@ class Collection(HtmlPage):
         return div(h2(text), id='header')
 
     def displayArea(self):
+        return div(self.textArea() + \
+                   self.pictureArea(), id='displayArea')
+
+    def textArea(self):
+        '''Return TextArea used inside Display Area'''
+        o = ''
+        if self.page.html:
+            media_dir="/home/dlink/vpics/web/images/"
+            filename = '%s/%s' % (media_dir, self.page.html.filename)
+            o = open(filename, 'r').read()
+        return div(center(o), id='textArea')
+
+    def pictureArea(self):
+        '''Picture area used inside DisplayArea'''
         if not self.page:
             return self.pageNotFound()
 
@@ -71,7 +85,8 @@ class Collection(HtmlPage):
                     i += 1
             table.addRow(row)
             table.setRowVAlign(table.rownum, 'top')
-        return div(table.getTable(), id='displayArea')
+
+        return div(table.getTable(), id='pictureArea')
 
     def pic_div(self, i):
         '''
