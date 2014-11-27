@@ -1,23 +1,24 @@
 import data
 
+class PicsError(Exception): pass
+
 class Pics(object): # DataTable):
     '''Preside over Pics Data'''
 
     def __init__(self):
-        self.data = data.getInstance().pics
+        self.data = data.getInstance()
     
-    def get(self, page=None):
-        '''Given an optional page name, or None for All
-           Return a list of Pic Objects
+    def get(self, page_name=None):
+        '''Return list of instantiated Pic Objects
+           for a given page_name, or for All if no page_name given
         '''
-        if not page:
-            return self.data
+        if not page_name:
+            return self.data.pics.values()
 
-        o = []
-        for pic in self.data:
-            if pic.page == page:
-                o.append(pic)
-        return o
+        if page_name not in self.data.pages:
+            raise PicsError("Page '%s' not found" % page_name)
+
+        return self.data[page_name]['pics']
 
 class Pic(object):
     '''Preside over a single Pic's Data'''
