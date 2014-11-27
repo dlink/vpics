@@ -16,7 +16,7 @@ Input YAML structure:
    pages:
       - Sculptures
       - Paintings
- 
+
    Sculptures:
       - pics:
          - filename: Sinner.jpg
@@ -25,7 +25,7 @@ Input YAML structure:
    Paintings:
       - pics:
          - filename: Tasteless.jpg
-         - filename: Budddha_watercolor.jpg 
+         - filename: Budddha_watercolor.jpg
    About:
       - html:
         - filename: about.html
@@ -51,7 +51,7 @@ Input YAML structure:
         # each page has entry
         for page_name in self.data.pages:
             if page_name not in self.data:
-                raise DataError("%s: page definition for '%s' not found." 
+                raise DataError("%s: page definition for '%s' not found."
                                 % (filename, page_name))
             #if 'pic' in self.data[page_name]:
             #    self.data[page_name].pic = odict(self.data[page_name].pic)
@@ -62,13 +62,25 @@ Input YAML structure:
         '''
         data = self.data
 
+        # init a collection of all pics
         data.pics = odict()
-        for page_name in data.pages:
-            if 'pics' not in data[page_name]:
-                continue
 
-            # convert to odict
+        # Loop thru each page
+        for page_name in data.pages:
+
+            # convert data[page_name] to odict
             data[page_name] = odict(data[page_name])
+
+            # does page have html?
+            if 'html' in data[page_name]:
+                data[page_name].html = odict(data[page_name].html)
+            else:
+                data[page_name].html = None
+
+            # does page have pics:
+            if 'pics' not in data[page_name]:
+                data[page_name].pics = []
+                continue
 
             # make pics a list of odicts rather than of dics:
             for i, pic in enumerate(data[page_name].pics):
