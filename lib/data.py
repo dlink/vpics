@@ -39,7 +39,7 @@ Input YAML structure:
         self.data = odict(yaml.load(open(filename, 'r')))
 
         self._validateData()
-        self._consolidatePics()
+        self._consolidateAndSetDefaultsPics()
 
     def _validateData(self):
         filename = self.filename
@@ -53,15 +53,36 @@ Input YAML structure:
             if page_name not in self.data:
                 raise DataError("%s: page definition for '%s' not found." 
                                 % (filename, page_name))
-    def _consolidatePics(self):
-        '''Gather all Pics defined in all Pages'''
-        self.data.pics = odict()
-        for page_name in self.data.pages:
-            if 'pics' not in self.data[page_name]:
+            #if 'pic' in self.data[page_name]:
+            #    self.data[page_name].pic = odict(self.data[page_name].pic)
+
+    def _consolidateAndSetDefaultsPics(self):
+        '''Gather all Pics defined in all Pages into data.pics
+           Add defaults for name, caption, and description
+        '''
+        data = self.data
+
+        data.pics = odict()
+        for page_name in data.pages:
+            if 'pics' not in data[page_name]:
                 continue
-            for pic in self.data[page_name]['pics']:
-                pic = odict(pic)
-                self.data.pics[pic.filename] = pic
+
+            # convert to odict
+            data[page_name] = odict(data[page_name])
+
+            # make pics a list of odicts rather than of dics:
+            for i, pic in enumerate(data[page_name].pics):
+                data[page_name].pics[i] = odict(pic)
+
+            # add annotated fields, and consolidate into data.pics
+            for i, pic in enumerate(data[page_name].pics):
+                if 'name' not in pic:
+                    pic.name = pic['filename'].split('.')[0]
+                if 'caption' not in pic:
+                    pic.caption = ''
+                if 'description' not in pic:
+                    pic.description = ''
+                data.pics[pic.filename] = pic
 
 __data = Data().data
 def getInstance():
