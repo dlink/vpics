@@ -37,9 +37,11 @@ Input YAML structure:
 
         self.filename = filename
         self.data = odict(yaml.load(open(filename, 'r')))
-        self.validateData()
 
-    def validateData(self):
+        self._validateData()
+        self._consolidatePics()
+
+    def _validateData(self):
         filename = self.filename
 
         # has pages key:
@@ -51,6 +53,15 @@ Input YAML structure:
             if page_name not in self.data:
                 raise DataError("%s: page definition for '%s' not found." 
                                 % (filename, page_name))
+    def _consolidatePics(self):
+        '''Gather all Pics defined in all Pages'''
+        self.data.pics = odict()
+        for page_name in self.data.pages:
+            if 'pics' not in self.data[page_name]:
+                continue
+            for pic in self.data[page_name]['pics']:
+                pic = odict(pic)
+                self.data.pics[pic.filename] = pic
 
 __data = Data().data
 def getInstance():
