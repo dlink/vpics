@@ -13,7 +13,7 @@ import data
 
 VERBOSE = 0
 
-CONF_NAME = 'vpics.conf'
+CONF_NAME = 'vpics.yaml'
 
 class VPicsError(Exception): pass
 
@@ -45,12 +45,17 @@ class VPics(object):
 
         # set config file:
         filename = "%s/%s" % (subdir, CONF_NAME)
-        print 'filename:', filename
-        if not os.path.isfile(filename):
-            data.createConfigFile(filename)
-        self.data = Data(filename)
-        return self.data
+        if os.path.isfile(filename):
+            print "File '%s' exists." % filename
+        else:
+            print "Creating file '%s'" % filename
+            open(filename, 'w').write(self.createConfig() + "\n")
+        self.data = data.getInstance()
+        return 'Done'
         
+    def createConfig(self):
+        return 'x'
+
 def syntax(emsg=None):
     prog = os.path.basename(sys.argv[0])
     if emsg:
