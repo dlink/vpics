@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
+import os
 import yaml
 
 from vlib.odict import odict
 
-#FILENAME = '/data/vpics-images/vpics.conf'
-FILENAME = '/data/dev-vpics/vpics.yaml'
+CONF_ENV_VAR = 'VCONF'
 
 class DataError(Exception): pass
 
@@ -13,6 +13,8 @@ class Data(object):
     '''
 Input YAML structure:
 ---------------------
+   media_base_url: art-images
+
    pages:
       - Sculptures
       - Paintings
@@ -32,17 +34,28 @@ Input YAML structure:
 '''
 
 
-    def __init__(self, filename=FILENAME):
-        # TODO : default fiename to ENV
+    def __init__(self):
+        try:
+            self.filename = os.environ[CONF_ENV_VAR]
+        except KeyError, e:
+            raise DataError('Environment variable %s not defined.'
+                            % CONF_ENV_VAR)
+        try:
+            self.data = odict(yaml.load(open(self.filename, 'r')))
+        except Exception, e:
+            raise DataError('Unable to parse yaml: %s\n%s: %s'
+                            % (self.filename, e.__class__.__name__, e))
 
-        self.filename = filename
-        self.data = odict(yaml.load(open(filename, 'r')))
-
+        self.data.config_filename = self.filename
         self._validateData()
         self._consolidateAndSetDefaultsPics()
 
     def _validateData(self):
         filename = self.filename
+
+        # has media_base_url:
+        if 'media_base_url' not in self.data:
+            raise DataError("%s: 'media_base_url' not found" % filename)
 
         # has pages key:
         if 'pages' not in self.data:
@@ -100,12 +113,12 @@ Input YAML structure:
 
 __data = Data().data
 def getInstance():
-    '''Return a single instance of Data()'s data property
-    '''
+    '''Return a single instance of Data()'s data property'''
     return __data
 
 if __name__ == '__main__':
     from pprint import pprint
+
     data = getInstance()
     print 'Data Dump:'
     print pprint(data)

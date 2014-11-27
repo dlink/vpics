@@ -62,8 +62,9 @@ class Collection(HtmlPage):
         '''Return TextArea used inside Display Area'''
         o = ''
         if self.page.html:
-            media_dir="/home/dlink/vpics/web/images/"
-            filename = '%s/%s' % (media_dir, self.page.html.filename)
+            filename = '%s/%s/%s' % (self.env.base_dir,
+                                     self.page.name,
+                                     self.page.html.filename)
             o = open(filename, 'r').read()
         return div(center(o), id='textArea')
 
@@ -102,15 +103,13 @@ class Collection(HtmlPage):
            <div>
         </center>
         '''
-        # hard coding
-        #media_dir="/data/vpics"
-        media_dir="dev-vpics/images"
-
-        pic_url = "/%s/%s/%s" % (media_dir, THUMBNAILS,
-                                 self.page.pics[i].filename)
+        pic_url = "/%s/%s/%s/%s" % (self.env.media_base_url,
+                                    self.page.name,
+                                    THUMBNAILS,
+                                    self.page.pics[i].filename)
         pic_img = img(src=pic_url, class_='picImage')
         caption = self.picCaption(i) 
-        href = "%s/oneup.py?id=%s" % (self.env.base_url, 
+        href = "/%s/oneup.py?id=%s" % (self.env.base_url,
                                       self.page.pics[i].name)
         return center(div(a(pic_img + caption, href=href), class_='pic'))
 

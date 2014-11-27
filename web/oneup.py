@@ -4,9 +4,9 @@ from vweb.htmlpage import HtmlPage
 from vweb.htmltable import HtmlTable
 from vweb.html import *
 
+from env import Env
 from pages import Page
 from pics import Pics, Pic
-
 from nav import Nav
 
 class Oneup(HtmlPage):
@@ -21,6 +21,7 @@ class Oneup(HtmlPage):
         self.nav = Nav()
         self.style_sheets.append(self.nav.style_sheets())
 
+        self.env = Env()
         self.pics = Pics()
         self.pic = None
 
@@ -48,10 +49,9 @@ class Oneup(HtmlPage):
         return div(self.pic_div(), id='displayArea')
 
     def pic_div(self):
-        # hard coding
-        media_dir="dev-vpics/images" 
-
-        pic_url = "/%s/%s" % (media_dir, self.pic.filename)
+        pic_url = "/%s/%s/%s" % (self.env.media_base_url,
+                                 self.pic.page_name,
+                                 self.pic.filename)
         pic_img = img(src=pic_url, class_='picImage')
         picNav = self.picNav()
         caption = self.picCaption() 
