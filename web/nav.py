@@ -17,16 +17,12 @@ class Nav(object):
            Pass in the name of the current selection.
         '''
 
+        # menu item for each page
         menu = []
         for page in self.pages.list:
             menu.append([page.name, 'collection.py?id=%s' % page.name])
 
-        # hard coding
-        menu.append(['Shows'       , 'collection.py?id=shows'])
-        menu.append(['About'       , 'about.py'])
-        menu.append(['Contact Info', 'contact.py'])
-            
-        
+        # format menu items with links and classes
         o = ''
         for item in menu:
             if item[0] == name:
@@ -34,7 +30,8 @@ class Nav(object):
             else:
                 class_ = 'navLink'
 
-            o += a(nobr(SP+SP+item[0]+SP+SP+SP), 
+            menu_item_name = item[0].title()
+            o += a(nobr(SP+SP+menu_item_name+SP+SP+SP),
                    href=item[1], 
                    class_=class_)+br()
         o = ul(o)
