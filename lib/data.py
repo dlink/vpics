@@ -94,7 +94,9 @@ Input YAML structure:
                     pic.caption = ''
                 if 'description' not in pic:
                     pic.description = ''
-                data.pics[pic.filename] = pic
+                pic.page_name = page_name
+
+                data.pics[pic.name] = pic
 
 __data = Data().data
 def getInstance():

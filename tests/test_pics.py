@@ -4,7 +4,8 @@ import unittest
 
 from pics import Pics, Pic
 
-PIC_FILENAME = 'Sinner.jpg'
+#PIC_FILENAME = 'Sinner.jpg'
+PIC_NAME = 'Sinner'
 PAGE_NAME = 'sculptures'
 
 class TestPics(unittest.TestCase):
@@ -13,20 +14,20 @@ class TestPics(unittest.TestCase):
         self.pics = Pics()
 
     def test_pics_get(self):
-        filenames = [x['filename'] for x in self.pics.get(PAGE_NAME)]
-        self.assertTrue(PIC_FILENAME in filenames)
+        names = [x['name'] for x in self.pics.get(PAGE_NAME)]
+        self.assertTrue(PIC_NAME in names)
 
     def test_pics_list_all(self):
         num = len(self.pics.get())
         self.assertTrue(num)
 
     def test_pic_get_filename(self):
-        pic = Pic(PIC_FILENAME)
-        self.assertEqual(PIC_FILENAME, pic.filename)
+        pic = Pic(PIC_NAME)
+        self.assertEqual(PIC_NAME, pic.name)
         
-    #def test_pic_page(self):
-    #    pic = Pic(PIC_FILENAME)
-    #    self.assertEqual(pic.page_name, PAGE_FILENAME)
+    def test_pic_page(self):
+        pic = Pic(PIC_NAME)
+        self.assertEqual(pic.page_name, PAGE_NAME)
 
 if __name__ == '__main__':
     unittest.main()
