@@ -29,8 +29,8 @@ Input YAML structure:
          - filename: Tasteless.jpg
          - filename: Budddha_watercolor.jpg
    About:
-      - html:
-        - filename: about.html
+      html:
+        filename: about.html
 '''
 
 
