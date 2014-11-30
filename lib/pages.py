@@ -12,6 +12,14 @@ class Pages(object):
         return self.data.pages
 
     @property
+    def site_name(self):
+        return self.data.site_name
+
+    @property
+    def site_message(self):
+        return self.data.site_message
+
+    @property
     def first_page(self):
         '''Return and first page as an instantiated Page Class'''
         return Page(self.data.pages[0])
