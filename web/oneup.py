@@ -5,7 +5,7 @@ from vweb.htmltable import HtmlTable
 from vweb.html import *
 
 from env import Env
-from pages import Page
+from pages import Pages, Page
 from pics import Pics, Pic
 from nav import Nav
 
@@ -22,6 +22,7 @@ class Oneup(HtmlPage):
         self.style_sheets.append(self.nav.style_sheets())
 
         self.env = Env()
+        self.pages = Pages()
         self.pics = Pics()
         self.pic = None
 
@@ -42,7 +43,7 @@ class Oneup(HtmlPage):
         return center(table.getTable())
 
     def header(self):
-        text = 'David Link'
+        text = self.pages.site_name
         return div(h2(text), id='header')
 
     def displayArea(self):
