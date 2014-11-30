@@ -13,7 +13,11 @@ class Data(object):
     '''
 Input YAML structure:
 ---------------------
-   media_base_url: art-images
+   site_name: Artworks
+
+   site_message: <p>Message to users here</p>
+
+   media_url: art-images
 
    pages:
       - Sculptures
@@ -53,13 +57,11 @@ Input YAML structure:
     def _validateData(self):
         filename = self.filename
 
-        # has media_base_url:
-        if 'media_base_url' not in self.data:
-            raise DataError("%s: 'media_base_url' not found" % filename)
-
-        # has pages key:
-        if 'pages' not in self.data:
-            raise DataError("%s: 'pages' not found" % filename)
+        # check these attributes:
+        attributes = ['site_name', 'site_message', 'media_url', 'pages']
+        for a in attributes:
+            if a not in self.data:
+                raise DataError("%s: '%s' not found" % (filename, a))
 
         # each page has entry
         for page_name in self.data.pages:
