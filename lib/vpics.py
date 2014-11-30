@@ -109,7 +109,7 @@ class VPics(object):
                     data[page].html = odict(filename=file)
 
                 # Pictures
-                elif ext == 'jpg':
+                elif ext in ('png', 'jpg', 'jpeg'):
                     pic = odict(name=file.replace('.'+ext, ''),
                                 filename=file,
                                 caption='',
