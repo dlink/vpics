@@ -20,12 +20,12 @@ Input YAML structure:
       - Paintings
 
    Sculptures:
-      - pics:
+      pics:
          - filename: Sinner.jpg
          - filename: Angel.jpg
 
    Paintings:
-      - pics:
+      pics:
          - filename: Tasteless.jpg
          - filename: Budddha_watercolor.jpg
    About:

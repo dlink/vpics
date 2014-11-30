@@ -51,7 +51,8 @@ class VPics(object):
             print "File '%s' exists." % filename
         else:
             print "Creating file '%s'" % filename
-            open(filename, 'w').write(self.createConfig(subdir) + "\n")
+            data = self.createConfig(subdir)
+            open(filename, 'w').write(self.formatConfig(data))
         #self.data = data.getInstance()
         return 'Done'
         
@@ -98,12 +99,32 @@ class VPics(object):
                                     % (ext, subdir,  page, file))
         if warnings:
             print 'Warnings:'
-            print '\n'.join(["%s. %s" % (i+1,j) for i,j in enumerate(warnings)])
+            print '\n'.join(["%s. %s" %(i+1,j) for i,j in enumerate(warnings)])
+        return data
 
-        print
-        import pprint
-        pprint.pprint(data)
-        return 'TBD'
+    def formatConfig(self, data):
+        ind = '   '
+
+        o = ''
+        o += 'pages:\n'
+        for page in data.pages:
+            o += '%s- %s\n' % (ind, page)
+        o += '\n'
+        for page in data.pages:
+            o += '%s:\n' % page
+            if 'filename' in data[page].html:
+                o += '%shtml:\n' % ind
+                o += '%sfilename: %s\n' % (ind*2, data[page].html.filename)
+            if data[page].pics:
+                o += '%spics:\n' % ind
+                for pic in data[page].pics:
+                    o += '%s- name       : %s\n' % (ind*2, pic.name)
+                    o += '%s  filename   : %s\n' % (ind*2, pic.filename)
+                    o += '%s  caption    : %s\n' % (ind*2, pic.caption)
+                    o += '%s  description: %s\n' % (ind*2, pic.description)
+                    o += '\n'
+        print o.strip()
+        return o
 
 
 def syntax(emsg=None):
