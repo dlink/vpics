@@ -40,8 +40,10 @@ class Collection(HtmlPage):
             self.page = self.pages.first_page
 
     def messageLine(self):
-        msg_lines = ['user message']
-        return center('<br/>'.join(msg_lines))
+        if self.pages.site_message:
+            #msg_lines = ['user message']
+            return center(self.pages.site_message)
+        return ''
     
     def navAndDisplayArea(self):
         table = HtmlTable()
@@ -51,7 +53,7 @@ class Collection(HtmlPage):
         return center(table.getTable())
 
     def header(self):
-        text = 'David Link'
+        text = self.pages.site_name
         return div(h2(text), id='header')
 
     def displayArea(self):
@@ -103,7 +105,7 @@ class Collection(HtmlPage):
            <div>
         </center>
         '''
-        pic_url = "/%s/%s/%s/%s" % (self.env.media_base_url,
+        pic_url = "/%s/%s/%s/%s" % (self.env.media_url,
                                     self.page.name,
                                     THUMBNAILS,
                                     self.page.pics[i].filename)
