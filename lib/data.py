@@ -105,7 +105,7 @@ Input YAML structure:
             for i, pic in enumerate(data[page_name].pics):
                 if 'name' not in pic:
                     pic.name = pic['filename'].split('.')[0]
-                if 'caption' not in pic:
+                if 'caption' not in pic or not pic.caption:
                     pic.caption = ''
                 if 'description' not in pic:
                     pic.description = ''
