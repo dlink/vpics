@@ -19,13 +19,13 @@ class Env(object):
         return os.path.dirname(os.environ['REQUEST_URI']).strip('/')
 
     @property
-    def media_base_url(self):
+    def media_url(self):
         '''Return base_url of media suitable for anchor href attributes'''
-        return self.data.media_base_url.strip('/')
+        return self.data.media_url.strip('/')
 
 
 if __name__ == '__main__':
     env = Env()
     print 'base_dir:', env.base_dir
     print 'base_url:', env.base_url
-    print 'media_base_url:', env.media_base_url
+    print 'media_url:', env.media_url
