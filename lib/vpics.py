@@ -5,17 +5,11 @@ import os
 import copy
 
 from vlib.odict import odict
-#from datetime import datetime
-
-#import vlib.conf as conf
-#import vlib.logger as logger
-
-#from data import Data
-#import data
 
 VERBOSE = 0
 
 CONF_NAME = 'vpics.yaml'
+THUMBNAILS = '200px'
 
 class VPicsError(Exception): pass
 
@@ -23,7 +17,6 @@ class VPics(object):
 
     def __init__(self):
         self.verbose = VERBOSE 
-        #self.logger = logger.getLogger(self.__class__.__name__)
 
     def process(self, *args):
 
@@ -38,9 +31,12 @@ class VPics(object):
         cmd = args[0]
         subdir = args[1].rstrip('/')
 
-        if cmd != 'update':
+        if cmd == 'update':
+            return self.update(subdir)
+        else:
             raise VPicsError('Unrecognized Command: %s' % cmd)
         
+    def update(self, subdir):
         # validate subdir
         if not os.path.isdir(subdir):
             raise VPicsError('%s is not a subdirectlry' % subdir)
@@ -50,14 +46,33 @@ class VPics(object):
         if 0: #os.path.isfile(filename):
             print "File '%s' exists." % filename
         else:
-            print "Creating file '%s'" % filename
-            data = self.createConfig(subdir)
-            open(filename, 'w').write(self.formatConfig(data))
+            data, warnings = self._gatherMetadata(subdir)
+            if warnings:
+                print 'Warnings:'
+                print '\n'.join(["  %s. %s" %(i+1,j)
+                                 for i,j in enumerate(warnings)])
+                print
+            # write config
+            open(filename, 'w').write(self._formatConfig(data))
+            print 'Config file: %s written.' % filename
+        return 'Done.'
         #self.data = data.getInstance()
-        return 'Done'
         
-    def createConfig(self, subdir):
-        data = odict(pages=[])
+    def _gatherMetadata(self, subdir):
+        '''Given the name of a media subdirectory
+           Return a data dictionary media's metadata, and
+                  a warning list
+        '''
+        SKIPPERS = ['200px', 'vpics.yaml']
+
+        # default site_name to subdirname
+        site_name = subdir.split('/')[-1].replace('_', ' ').title()
+
+        data = odict(site_name    = site_name,
+                     site_message = '',
+                     media_url    = 'NEED_TO_SET_THIS_IN_vpics.yaml',
+                     pages        = [])
+
         warnings = []
 
         # get pages from subdirectories
@@ -74,8 +89,13 @@ class VPics(object):
 
         # get images and phtml files for each page
         for page in data.pages:
+            page_dir      = "%s/%s"    % (subdir, page)
+            thumbnail_dir = "%s/%s/%s" % (subdir, page, THUMBNAILS)
+
             data[page] = odict(pics=[], html={})
-            for file in os.listdir("%s/%s" % (subdir, page)):
+            for file in os.listdir(page_dir):
+                if file in SKIPPERS:
+                    continue
                 ext = file.split('.')[-1]
 
                 # html pages:
@@ -87,25 +107,35 @@ class VPics(object):
                                            file))
 
                     data[page].html = odict(filename=file)
+
+                # Pictures
                 elif ext == 'jpg':
                     pic = odict(name=file.replace('.'+ext, ''),
                                 filename=file,
                                 caption='',
                                 description='')
                     data[page].pics.append(pic)
+
+                # Unknowns
                 else:
                     warnings.append('Unrecognized file extention: "%s".  '
                                     'File: "%s/%s/%s"'
                                     % (ext, subdir,  page, file))
-        if warnings:
-            print 'Warnings:'
-            print '\n'.join(["%s. %s" %(i+1,j) for i,j in enumerate(warnings)])
-        return data
 
-    def formatConfig(self, data):
+            # look for thumbnail dir
+            if data[page].pics and not os.path.exists(thumbnail_dir):
+                warnings.append('Thumbnail directory for page "%s" '
+                                'not found: %s' % (page, thumbnail_dir))
+
+        return data, warnings
+
+    def _formatConfig(self, data):
         ind = '   '
 
         o = ''
+        o += 'site_name: %s\n\n'    % data.site_name
+        o += 'site_message: %s\n\n' % data.site_message
+        o += 'media_url: %s\n\n'    % data.media_url
         o += 'pages:\n'
         for page in data.pages:
             o += '%s- %s\n' % (ind, page)
@@ -123,7 +153,6 @@ class VPics(object):
                     o += '%s  caption    : %s\n' % (ind*2, pic.caption)
                     o += '%s  description: %s\n' % (ind*2, pic.description)
                     o += '\n'
-        print o.strip()
         return o
 
 
