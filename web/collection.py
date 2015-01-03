@@ -67,7 +67,10 @@ class Collection(HtmlPage):
             filename = '%s/%s/%s' % (self.env.base_dir,
                                      self.page.name,
                                      self.page.html.filename)
-            o = open(filename, 'r').read()
+            try:
+                o = open(filename, 'r').read()
+            except Exception, e:
+                o = 'Unable to read from %s: %s' % (self.page.html.filename, e)
         return div(center(o), id='textArea')
 
     def pictureArea(self):
