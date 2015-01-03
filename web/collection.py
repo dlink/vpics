@@ -32,7 +32,7 @@ class Collection(HtmlPage):
             self.header() +\
             self.messageLine() +\
             self.navAndDisplayArea()
-           
+
     def process(self):
         if 'id' in self.form:
             self.page = Page(self.form['id'].value)
@@ -44,7 +44,7 @@ class Collection(HtmlPage):
             #msg_lines = ['user message']
             return center(self.pages.site_message)
         return ''
-    
+
     def navAndDisplayArea(self):
         table = HtmlTable()
         table.addRow([self.nav.nav(self.page.name),
@@ -114,7 +114,7 @@ class Collection(HtmlPage):
                                     THUMBNAILS,
                                     self.page.pics[i].filename)
         pic_img = img(src=pic_url, class_='picImage')
-        caption = self.picCaption(i) 
+        caption = self.picCaption(i)
         href = "/%s/oneup.py?id=%s" % (self.env.base_url,
                                       self.page.pics[i].name)
         return center(div(a(pic_img + caption, href=href), class_='pic'))
@@ -128,6 +128,12 @@ class Collection(HtmlPage):
         return div(p('No page found.'))
 
     def _applyTemplate(self, s):
+        '''Replace variables in the HTML of the form ##VAR## with
+           dynamic variables.
+
+           eq.
+               <img src="##MEDIA_URL##/Herman.jpg"/>
+        '''
         SUBSTITUTIONS = {'MEDIA_URL': '/%s/%s' % (self.env.media_url,
                                                   self.page.name)}
         for var, replacement in SUBSTITUTIONS.items():
