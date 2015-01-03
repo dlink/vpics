@@ -69,6 +69,7 @@ class Collection(HtmlPage):
                                      self.page.html.filename)
             try:
                 o = open(filename, 'r').read()
+                o = self._applyTemplate(o)
             except Exception, e:
                 o = 'Unable to read from %s: %s' % (self.page.html.filename, e)
         return div(center(o), id='textArea')
@@ -125,6 +126,14 @@ class Collection(HtmlPage):
 
     def pageNotFound(self):
         return div(p('No page found.'))
+
+    def _applyTemplate(self, s):
+        SUBSTITUTIONS = {'MEDIA_URL': '/%s/%s' % (self.env.media_url,
+                                                  self.page.name)}
+        for var, replacement in SUBSTITUTIONS.items():
+            var = '##%s##' % var
+            s = s.replace(var, replacement)
+        return s
 
 if __name__ == '__main__':
     Collection().go()
