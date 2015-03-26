@@ -1,6 +1,8 @@
 Picture Viewer App
 
-A work in progress (11/27/2013)
+Developed to make Artist Websites easy using only image files.
+
+It consists of Pages and Pics.   Uses Yaml to define metadata for each Page and Pic.
 
 Requirements
 ------------
