@@ -4,6 +4,10 @@ Developed to make Artist Websites easy using only image files.
 
 It consists of Pages and Pics.   Uses Yaml to define metadata for each Page and Pic.
 
+Live sites:
+* http://davidlinkart.com
+* http://hermanroggeman.com
+
 Requirements
 ------------
 
