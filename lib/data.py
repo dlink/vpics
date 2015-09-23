@@ -37,13 +37,17 @@ Input YAML structure:
         filename: about.html
 '''
 
+    def __init__(self, filename=None):
 
-    def __init__(self):
-        try:
-            self.filename = os.environ[CONF_ENV_VAR]
-        except KeyError, e:
-            raise DataError('Environment variable %s not defined.'
-                            % CONF_ENV_VAR)
+        # get filename
+        if filename:
+            self.filename = filename
+        else:
+            try:
+                self.filename = os.environ[CONF_ENV_VAR]
+            except KeyError, e:
+                raise DataError('Environment variable %s not defined.'
+                                % CONF_ENV_VAR)
         try:
             self.data = odict(yaml.load(open(self.filename, 'r')))
         except Exception, e:
@@ -113,7 +117,9 @@ Input YAML structure:
 
                 data.pics[pic.name] = pic
 
+
 __data = Data().data
+
 def getInstance():
     '''Return a single instance of Data()'s data property'''
     return __data
