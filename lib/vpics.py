@@ -137,6 +137,14 @@ class VPics(object):
             if page not in data:
                 data[page] = odict(pics=[], html={})
 
+            # check directory exists:
+            if not os.path.isdir(page_dir):
+                del data[page]
+                del data.pages[data.pages.index(page)]
+                warnings.append('Subdirectory for page "%s" no longer found. '
+                                'Removing it.' % page)
+                continue
+
             # loop thru subdirectory files in reverse order and prepend them
             # This allows
             #   1. inital alphabetical listing
@@ -176,6 +184,14 @@ class VPics(object):
                 warnings.append('Thumbnail directory for page "%s" '
                                 'not found: %s' % (page, thumbnail_dir))
 
+        # remove empty pages from data
+        for page in data.pages:
+            print 'page:', page
+            print '  ', data[page]
+            if ('html' not in data[page] or not data[page]['html']) and \
+                    ('pics' not in data[page] or not data[page]['pics']):
+                del data[page]
+                del data.pages[data.pages.index(page)]
         return data, warnings
 
     def _formatConfig(self, data):
