@@ -180,10 +180,10 @@ class VPics(object):
                                     % (ext, subdir,  page, file))
 
             # look for thumbnail dir
-            if data[page].pics and not os.path.exists(thumbnail_dir):
+            if not data[page].html and data[page].pics and \
+                    not os.path.exists(thumbnail_dir):
                 warnings.append('Thumbnail directory for page "%s" '
                                 'not found: %s' % (page, thumbnail_dir))
-
         # Page Clean up
         pages = copy.copy(data.pages)
         for page in pages:
