@@ -115,7 +115,13 @@ class Collection(HtmlPage):
                                     self.page.pics[i].filename)
         pic_img = img(src=pic_url, class_='picImage')
         caption = self.picCaption(i)
-        href = "/%s/oneup.py?id=%s" % (self.env.base_url,
+        #href = "/%s/oneup.py?id=%s" % (self.env.base_url,
+        #                              self.page.pics[i].name)
+        if self.env.base_url:
+            base = '/%s' % self.env.base_url
+        else:
+            base = ''
+        href = "%s/oneup.py?id=%s" % (base,
                                       self.page.pics[i].name)
         return center(div(a(pic_img + caption, href=href), class_='pic'))
 
