@@ -72,7 +72,7 @@ class Collection(HtmlPage):
                 o = self._applyTemplate(o)
             except Exception, e:
                 o = 'Unable to read from %s: %s' % (self.page.html.filename, e)
-        return div(center(o), id='textArea')
+        return div(o, id='textArea')
 
     def pictureArea(self):
         '''Picture area used inside DisplayArea'''
