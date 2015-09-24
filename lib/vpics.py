@@ -156,7 +156,7 @@ class VPics(object):
                 ext = file.split('.')[-1]
 
                 # html pages:
-                if ext == 'phtml':
+                if ext in ('html', 'phtml'):
                     if 'filename' in data[page].html:
                         warnings.append('Page "%s" already has a phtml file: '
                                         '"%s".  Skipping "%s"'
@@ -184,15 +184,23 @@ class VPics(object):
                 warnings.append('Thumbnail directory for page "%s" '
                                 'not found: %s' % (page, thumbnail_dir))
 
-        # remove empty pages from data
+        # Page Clean up
         pages = copy.copy(data.pages)
         for page in pages:
+
+            # remove empty pages from data
             if ('html' not in data[page] or not data[page]['html']) and \
                     ('pics' not in data[page] or not data[page]['pics']):
                 del data[page]
                 del data.pages[data.pages.index(page)]
                 warnings.append('Page %s is empty, not including in config'
                                 % page)
+                continue
+
+            # remove pics from pages with html
+            if ('html' in data[page] and data[page]['html']):
+                data[page]['pics'] = {}
+
         return data, warnings
 
     def _formatConfig(self, data):
