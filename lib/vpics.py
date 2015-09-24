@@ -71,12 +71,18 @@ class VPics(object):
             data1 = self._getExistingData(filename)
 
         # gather meta data from subdir, and existing data
-        data, warnings = self._gatherMetadata(subdir, data1)
+        data, actions, warnings = self._gatherMetadata(subdir, data1)
         if warnings:
             print 'Warnings:'
             print '\n'.join(["  %s. %s" %(i+1,j)
                              for i,j in enumerate(warnings)])
             print
+        if actions:
+            print 'Actions:'
+            print '\n'.join(["  %s. %s" % (i+1, j)
+                             for i,j in enumerate(actions)])
+        else:
+            print 'No Changes made'
 
         # backup existing file if nec.
         if data1:
@@ -97,12 +103,14 @@ class VPics(object):
 
     def _gatherMetadata(self, subdir, data):
         '''Given the name of a media subdirectory
-           Return a data dictionary media's metadata, and
+           Return a data dictionary media's metadata,
+                  a actions list
                   a warning list
         '''
         SKIPPERS = ['200px', 'vpics.yaml']
 
         # init
+        actions = []
         warnings = []
         if not data:
             # default site_name to subdirname
@@ -111,6 +119,7 @@ class VPics(object):
                          site_message = '',
                          media_url    = 'NEED_TO_SET_THIS_IN_vpics.yaml',
                          pages        = [])
+            actions.append('Added site_name: %s' % site_name)
 
         # get pages from subdirectories
         for file in os.listdir(subdir):
@@ -141,8 +150,8 @@ class VPics(object):
             if not os.path.isdir(page_dir):
                 del data[page]
                 del data.pages[data.pages.index(page)]
-                warnings.append('Subdirectory for page "%s" no longer found. '
-                                'Removing it.' % page)
+                actions.append('Removed page "%s" - Subdirectory no longer '
+                               'found' % page)
                 continue
 
             # loop thru subdirectory files in reverse order and prepend them
@@ -158,11 +167,16 @@ class VPics(object):
                 # html pages:
                 if ext in ('html', 'phtml'):
                     if 'filename' in data[page].html:
-                        warnings.append('Page "%s" already has a phtml file: '
-                                        '"%s".  Skipping "%s"'
-                                        % (page, data[page].html.filename,
-                                           file))
-                    data[page].html = odict(filename=file)
+                        if data[page].html['filename'] != file:
+                            warnings.append('Page "%s" already has a phtml '
+                                            'file: "%s".  Skipping "%s"'
+                                            % (page, data[page].html.filename,
+                                               file))
+                    else:
+                        # add html file
+                        data[page].html = odict(filename=file)
+                        actions.append('Page "%s": added html filename: %s'
+                                       % (page, file))
 
                 # Pictures
                 elif ext in ('png', 'jpg', 'jpeg'):
@@ -172,6 +186,8 @@ class VPics(object):
                                     caption='',
                                     description='')
                         data[page].pics.insert(0, pic)
+                        actions.append('Page "%s": added pic: %s'
+                                       % (page, file))
 
                 # Unknowns
                 else:
@@ -201,7 +217,7 @@ class VPics(object):
             if ('html' in data[page] and data[page]['html']):
                 data[page]['pics'] = {}
 
-        return data, warnings
+        return data, actions, warnings
 
     def _formatConfig(self, data):
         ind = '   '
