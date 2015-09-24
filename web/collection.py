@@ -26,8 +26,6 @@ class Collection(HtmlPage):
         self.env = Env()
         self.pages = Pages()
         self.page = None
-        self.debug_cgi = 1
-        self.debug_msg += '<p>hello</p>'
 
     def getHtmlContent(self):
         return \
@@ -127,7 +125,7 @@ class Collection(HtmlPage):
             base = ''
         href = "%s/oneup.py?id=%s" % (base,
                                       self.page.pics[i].name)
-        return center(div(a(pic_img + caption, href=href), class_='pic'))
+        return center(div(a(pic_img + caption, href=href, class_='captionLink'), class_='pic'))
 
     def picCaption(self, i):
         return div('<i>%s </i><small>%s</small>' % (self.page.pics[i].name,
