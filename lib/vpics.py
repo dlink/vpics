@@ -186,12 +186,12 @@ class VPics(object):
 
         # remove empty pages from data
         for page in data.pages:
-            print 'page:', page
-            print '  ', data[page]
             if ('html' not in data[page] or not data[page]['html']) and \
                     ('pics' not in data[page] or not data[page]['pics']):
                 del data[page]
                 del data.pages[data.pages.index(page)]
+                warnings.append('Page %s is empty, not including in config'
+                                % page)
         return data, warnings
 
     def _formatConfig(self, data):
