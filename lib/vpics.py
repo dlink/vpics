@@ -185,7 +185,8 @@ class VPics(object):
                                 'not found: %s' % (page, thumbnail_dir))
 
         # remove empty pages from data
-        for page in data.pages:
+        pages = copy.copy(data.pages)
+        for page in pages:
             if ('html' not in data[page] or not data[page]['html']) and \
                     ('pics' not in data[page] or not data[page]['pics']):
                 del data[page]
@@ -199,7 +200,7 @@ class VPics(object):
 
         o = ''
         o += 'site_name: %s\n\n'    % data.site_name
-        o += 'site_message: %s\n\n' % data.site_message
+        o += 'site_message: %s\n\n' % (data.site_message or '')
         o += 'media_url: %s\n\n'    % data.media_url
         o += 'pages:\n'
         for page in data.pages:
@@ -215,8 +216,8 @@ class VPics(object):
                 for pic in data[page].pics:
                     o += '%s- name       : %s\n' % (ind*2, pic.name)
                     o += '%s  filename   : %s\n' % (ind*2, pic.filename)
-                    o += '%s  caption    : %s\n' % (ind*2, pic.caption)
-                    o += '%s  description: %s\n' % (ind*2, pic.description)
+                    o += '%s  caption    : %s\n' % (ind*2, pic.caption or '')
+                    o += '%s  description: %s\n' % (ind*2, pic.description or '')
                     o += '\n'
         return o
 
