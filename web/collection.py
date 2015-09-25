@@ -99,7 +99,7 @@ class Collection(HtmlPage):
         '''
         <center>
            <div class="pic">
-              <a href="/oneup.py?id=NAME">
+              <a href="/oneup.py?id=NAME" class="captionLink">
                  <img src="URL" class="picImage">
                  <div class="picCaption">
                     <i>NAME </i>
@@ -128,7 +128,7 @@ class Collection(HtmlPage):
         return center(div(a(pic_img + caption, href=href, class_='captionLink'), class_='pic'))
 
     def picCaption(self, i):
-        return div('<i>%s </i><small>%s</small>' % (self.page.pics[i].name,
+        return div('<i>%s</i><br/><small>%s</small>' % (self.page.pics[i].name,
                                                     self.page.pics[i].caption),
                  class_='picCaption')
 
