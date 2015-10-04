@@ -222,9 +222,16 @@ class VPics(object):
     def _formatConfig(self, data):
         ind = '   '
 
+
+        if data.site_message:
+            # support multiline yaml dict value with indentation
+            site_message = '   ' + data.site_message.replace('\n', '\n   ')
+        else:
+            site_message = ''
+
         o = ''
         o += 'site_name: %s\n\n'    % data.site_name
-        o += 'site_message: %s\n\n' % (data.site_message or '')
+        o += 'site_message: >\n%s\n\n' % site_message
         o += 'media_url: %s\n\n'    % data.media_url
         o += 'pages:\n'
         for page in data.pages:
