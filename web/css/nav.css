@@ -22,7 +22,7 @@ a.navLink:hover {
    color: white;
    background-color: black;
 }
-a:navLink:active {
+a.navLink:active {
    color: black;
 }
 

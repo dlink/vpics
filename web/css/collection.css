@@ -21,11 +21,11 @@
     // color: white;
 }
 
-a:link {
+a.captionLink:link {
     text-decoration: none;
     color: black;
 }
-a:visited {
+a.captionLink:visited {
     text-decoration:none;
     color: black;
 }

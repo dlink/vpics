@@ -1,37 +1,27 @@
-from vlib import db
-from vlib.datatable import DataTable
+import data
 
-from pagepics import PagePics
+class PicsError(Exception): pass
 
-class Pics(DataTable):
-    '''Preside over Pics Database Table'''
+class Pics(object): # DataTable):
+    '''Preside over Pics Data'''
 
     def __init__(self):
-        self.db = db.getInstance()
-        DataTable.__init__(self, self.db, 'pics')
-        
-    def get(self, filter=None):
-        '''Given an optional SQL filter, or None for All
-           Return a list of Pic Objects
+        self.data = data.getInstance()
+    
+    def get(self, page_name=None):
+        '''Return list of instantiated Pic Objects
+           for a given page_name, or for All if no page_name given
         '''
-        o = []
-        for row in DataTable.get(self, filter):
-            o.append(Pic(row['pic_id']))
-        return o
+        if not page_name:
+            return self.data.pics.values()
 
-class Pic(DataTable):
-    '''Preside over Pics Database Table Records'''
+        if page_name not in self.data.pages:
+            raise PicsError("Page '%s' not found" % page_name)
 
-    def __init__(self, pic_id):
-        self.db = db.getInstance()
-        DataTable.__init__(self, self.db, 'pics')
-        self.data = self.get('pic_id = %s' % pic_id)[0]
-        self.__dict__.update(self.data)
+        return self.data[page_name]['pics']
 
-    @property
-    def pages(self):
-        if '_pages' not in self.__dict__:
-            self._pages = []
-            for row in PagePics().get('pic_id = "%s"' % self.pic_id):
-                self._pages.append(row)
-        return self._pages
+class Pic(object):
+    '''Preside over a single Pic's Data'''
+
+    def __init__(self, name):
+        self.__dict__.update(data.getInstance().pics[name])

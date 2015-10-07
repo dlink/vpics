@@ -1,42 +1,47 @@
-from vlib import db
-from vlib.datatable import DataTable
-
+import data
 from pics import Pic
-from pagepics import PagePics
 
-class Pages(DataTable):
-    '''Preside over Pages Database Table'''
+class Pages(object):
+    '''Preside over Pages Data'''
 
     def __init__(self):
-        self.db = db.getInstance()
-        DataTable.__init__(self, self.db, 'pages')
+        self.data = data.getInstance()
         
-    def get(self, filter=None):
-        '''Given an optional SQL filter, or None for All
-           Return a list of Page Objects
-        '''
-        o = []
-        for row in DataTable.get(self, filter):
-            o.append(Page(row['page_id']))
-        return o
-
-class Page(DataTable):
-    '''Preside over Pages Database Table Records'''
-
-    def __init__(self, page_id):
-        self.db = db.getInstance()
-        DataTable.__init__(self, self.db, 'pages')
-        self.data = self.get('page_id = %s' % page_id)[0]
-        self.__dict__.update(self.data)
+    def getAll(self):
+        '''Return a list of Page Objects'''
+        return self.data.pages
 
     @property
-    def pics(self):
-        if '_pics' not in self.__dict__:
-            self._pics = []
-            #for row in PagePics().get('page_id = "%s"' % self.page_id):
-            pagePics = PagePics()
-            pagePics.setFilters('page_id = "%s"' % self.page_id)
-            pagePics.setOrderBy('seq_num')
-            for row in pagePics.getTable():
-                self._pics.append(Pic(row['pic_id']))
-        return self._pics
+    def site_name(self):
+        return self.data.site_name
+
+    @property
+    def site_message(self):
+        return self.data.site_message
+
+    @property
+    def first_page(self):
+        '''Return and first page as an instantiated Page Class'''
+        return Page(self.data.pages[0])
+
+    @property
+    def list(self):
+        '''Return a list of instantiated Page objects in id order'''
+        return [Page(x) for x in self.data.pages]
+
+
+class PageError(Exception): pass
+
+class Page(object):
+    '''Preside over Pages Database Table Records'''
+
+    def __init__(self, name):
+        self.name = name
+
+        self.data = data.getInstance()
+        if name not in self.data.pages:
+            raise PageError("Page '%s' not found." % name)
+        self.__dict__.update(data.getInstance()[name])
+
+    def __repr__(self):
+        return '[pages.Page(%s) object]' % self.name
