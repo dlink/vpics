@@ -16,17 +16,6 @@ class Nav(object):
         '''Draw Navigation Menu.
            Pass in the name of the current selection.
         '''
-<<<<<<< HEAD
-        menu = [
-            ['Sculpture'   , 'collection.py?id=sculpture'],
-            ['Paintings'    , 'collection.py?id=paintings'],
-            ['Drawings'    , 'collection.py?id=drawings'],
-            ['Shows'       , 'collection.py?id=shows'],
-            ['About'       , 'about.py'],
-            ['Contact Info', 'contact.py']
-            ]
-        
-=======
 
         # menu item for each page
         menu = []
@@ -34,7 +23,6 @@ class Nav(object):
             menu.append([page.name, 'collection.py?id=%s' % page.name])
 
         # format menu items with links and classes
->>>>>>> yaml_source2
         o = ''
         for item in menu:
             if item[0] == name:
