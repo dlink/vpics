@@ -1,6 +1,12 @@
 Release Notes
 -------------
 
+### v2.1.0
+10/06/2015
+
+* Created vpics update procedure to automatically generate yaml
+* Improved messaging
+
 ### v2.0.0
 11/30/2014
 
