@@ -109,7 +109,11 @@ class Collection(HtmlPage):
            <div>
         </center>
         '''
-        pic_url = "/%s/%s/%s/%s" % (self.env.media_url,
+        #pic_url = "/%s/%s/%s/%s" % (self.env.media_url,
+        #                            self.page.name,
+        #                            THUMBNAILS,
+        #                            self.page.pics[i].filename)
+        pic_url = "http://%s/%s/%s/%s" % (self.env.media_url,
                                     self.page.name,
                                     THUMBNAILS,
                                     self.page.pics[i].filename)

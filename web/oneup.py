@@ -50,7 +50,7 @@ class Oneup(HtmlPage):
         return div(self.pic_div(), id='displayArea')
 
     def pic_div(self):
-        pic_url = "/%s/%s/%s" % (self.env.media_url,
+        pic_url = "http://%s/%s/%s" % (self.env.media_url,
                                  self.pic.page_name,
                                  self.pic.filename)
         pic_img = img(src=pic_url, class_='picImage')
