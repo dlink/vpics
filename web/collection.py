@@ -53,8 +53,12 @@ class Collection(HtmlPage):
         return center(table.getTable())
 
     def header(self):
-        text = self.pages.site_name
-        return div(h2(text), id='header')
+        #text = self.pages.site_name
+        #return div(h2(text), id='header')
+        pic_url = "http://%s/%s" % (self.env.media_url,
+                                          'rrogers.jpg')
+        pic = img(src=pic_url, class_='picImage')
+        return div(pic, id='header')
 
     def displayArea(self):
         return div(self.textArea() + \
