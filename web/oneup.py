@@ -15,7 +15,7 @@ class Oneup(HtmlPage):
         HtmlPage.__init__(self, 'Oneup')
         self.style_sheets.append('css/vpics.css')
         self.style_sheets.append('css/oneup.css')
-        self.javascript_src.append('js/googleanalytics.js')
+        #self.javascript_src.append('js/googleanalytics.js')
 
         # nav
         self.nav = Nav()

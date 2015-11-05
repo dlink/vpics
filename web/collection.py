@@ -17,7 +17,7 @@ class Collection(HtmlPage):
         HtmlPage.__init__(self, 'Pics Page')
         self.style_sheets.append('css/vpics.css')
         self.style_sheets.append('css/collection.css')
-        self.javascript_src.append('js/googleanalytics.js')
+        #self.javascript_src.append('js/googleanalytics.js')
 
         # navigation
         self.nav = Nav()
