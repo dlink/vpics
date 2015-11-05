@@ -14,7 +14,7 @@ class About(HtmlPage):
         HtmlPage.__init__(self, 'Pics Page')
         self.style_sheets.append('css/vpics.css')
         self.style_sheets.append('css/about.css')
-        self.javascript_src.append('js.googleanalytics')
+        #self.javascript_src.append('js.googleanalytics')
 
         # navigation
         self.nav = Nav()
