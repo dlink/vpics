@@ -7,6 +7,7 @@ It consists of Pages and Pics.   Uses Yaml to define metadata for each Page and 
 Live sites:
 * http://davidlinkart.com
 * http://hermanroggeman.com
+* http://rickrogersart.com
 
 
 =======
