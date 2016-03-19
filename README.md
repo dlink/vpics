@@ -28,8 +28,6 @@ Relies on Unix Know-How.
 Requirements
 ------------
 
-- MySQL-python
-
 - vlib - Python base libraries, [https://github.com/dlink/vlib](https://github.com/dlink/vlib)
 
 - vweb - Python website libraries, - [https://github.com/dlink/vweb](https://github.com/dlink/vweb)
