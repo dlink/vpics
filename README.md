@@ -1,6 +1,5 @@
 Picture Viewer App
 
-<<<<<<< HEAD
 Developed to make Artist Websites easy using only image files.
 
 It consists of Pages and Pics.   Uses Yaml to define metadata for each Page and Pic.
@@ -8,6 +7,8 @@ It consists of Pages and Pics.   Uses Yaml to define metadata for each Page and 
 Live sites:
 * http://davidlinkart.com
 * http://hermanroggeman.com
+
+
 =======
 Given subdirectories of pictures, generate a Website Picture Viewer.
 
