@@ -13,7 +13,7 @@ Live sites:
 =======
 Given subdirectories of pictures, generate a Website Picture Viewer.
 
-Not Database required.
+No Database required.
 
 Uses a single yaml config file, called vpics.yaml in the root subdirectory
 
