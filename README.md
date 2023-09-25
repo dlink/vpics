@@ -1,6 +1,5 @@
 Picture Viewer App
 
-<<<<<<< HEAD
 Developed to make Artist Websites easy using only image files.
 
 It consists of Pages and Pics.   Uses Yaml to define metadata for each Page and Pic.
@@ -8,10 +7,13 @@ It consists of Pages and Pics.   Uses Yaml to define metadata for each Page and 
 Live sites:
 * http://davidlinkart.com
 * http://hermanroggeman.com
+* http://rickrogersart.com
+
+
 =======
 Given subdirectories of pictures, generate a Website Picture Viewer.
 
-Not Database required.
+No Database required.
 
 Uses a single yaml config file, called vpics.yaml in the root subdirectory
 
@@ -25,8 +27,6 @@ Relies on Unix Know-How.
 
 Requirements
 ------------
-
-- MySQL-python
 
 - vlib - Python base libraries, [https://github.com/dlink/vlib](https://github.com/dlink/vlib)
 

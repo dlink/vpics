@@ -179,7 +179,7 @@ class VPics(object):
                                        % (page, file))
 
                 # Pictures
-                elif ext in ('png', 'jpg', 'jpeg'):
+                elif ext.lower() in ('png', 'jpg', 'jpeg'):
                     if file not in page_filenames:
                         pic = odict(name=file.replace('.'+ext, ''),
                                     filename=file,
