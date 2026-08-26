@@ -7,6 +7,12 @@
     float: left;
 
 }
+
+#nav a {
+    display: block;
+    margin: 8px 0;
+    padding: 4px 8px;
+}
 #nav.p {
 }
 
@@ -38,7 +44,18 @@ a.navLinkSelected:hover {
    color: red;
    background-color: black;
 }
-a:navLinkSelected:active {
+a.navLinkSelected:active {
    color: red;
 }
 
+@media (max-width: 760px) {
+    #nav {
+        border-right: 0;
+        border-bottom: 1px solid black;
+        float: none;
+    }
+
+    #nav a {
+        display: inline-block;
+    }
+}

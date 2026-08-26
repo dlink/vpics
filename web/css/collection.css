@@ -21,6 +21,34 @@
     // color: white;
 }
 
+.picture-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--vpics-columns, 3), minmax(0, 1fr));
+    gap: 20px;
+}
+
+.picture-grid .picImage {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.picture-grid .picCaption small {
+    display: block;
+}
+
+@media (max-width: 760px) {
+    .picture-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .picture-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 a.captionLink:link {
     text-decoration: none;
     color: black;

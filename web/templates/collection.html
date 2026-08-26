@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ request.script_root }}/css/collection.css">
+{% endblock %}
+
+{% block content %}
+  {% if page_html %}
+    <section id="textArea">{{ page_html }}</section>
+  {% endif %}
+
+  {% if page.pics %}
+    <section id="pictureArea" class="picture-grid"
+             style="--vpics-columns: {{ columns }}">
+      {% for picture in page.pics %}
+        <article class="pic">
+          <a class="captionLink"
+             href="{{ url_for('pic', pic_name=picture.name) }}">
+            <img class="picImage" loading="lazy"
+                 src="{{ media_path(dataset.media_url, page.name, thumbnail_dir, picture.filename) }}"
+                 alt="{{ picture.name }}">
+            <div class="picCaption">
+              <strong>{{ picture.name }}</strong>
+              {% if picture.caption %}<small>{{ picture.caption }}</small>{% endif %}
+            </div>
+          </a>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+{% endblock %}

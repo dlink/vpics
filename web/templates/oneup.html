@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ request.script_root }}/css/oneup.css">
+{% endblock %}
+
+{% block content %}
+  <article class="pic oneup">
+    <nav class="picNav" aria-label="Artwork navigation">
+      {% if previous_picture %}
+        <a href="{{ url_for('pic', pic_name=previous_picture.name) }}">previous</a>
+      {% else %}
+        <span aria-disabled="true">previous</span>
+      {% endif %}
+      <a href="{{ url_for('page', page_name=page.name) }}">{{ page.name|title }}</a>
+      {% if next_picture %}
+        <a href="{{ url_for('pic', pic_name=next_picture.name) }}">next</a>
+      {% else %}
+        <span aria-disabled="true">next</span>
+      {% endif %}
+    </nav>
+    <img class="picImage"
+         src="{{ media_path(dataset.media_url, picture.page_name, picture.filename) }}"
+         alt="{{ picture.name }}">
+    <div class="picCaption">
+      <strong>{{ picture.name }}</strong>
+      {% if picture.caption %}<small>{{ picture.caption }}</small>{% endif %}
+    </div>
+    {% if picture.description %}
+      <div class="picDescription">{{ picture.description }}</div>
+    {% endif %}
+  </article>
+{% endblock %}

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ dataset.site_name }}</title>
+  <link rel="stylesheet" href="{{ request.script_root }}/css/vpics.css">
+  <link rel="stylesheet" href="{{ request.script_root }}/css/nav.css">
+  {% block styles %}{% endblock %}
+</head>
+<body>
+  <header id="header"><h1>{{ dataset.site_name }}</h1></header>
+  {% if dataset.site_message %}
+    <div id="site-message">{{ dataset.site_message|safe }}</div>
+  {% endif %}
+  <div id="portfolio-layout">
+    <nav id="nav" aria-label="Portfolio sections">
+      {% for nav_page in pages %}
+        <a href="{{ url_for('page', page_name=nav_page.name) }}"
+           class="{{ 'navLinkSelected' if page and nav_page.name == page.name else 'navLink' }}">
+          {{ nav_page.name|title }}
+        </a>
+      {% endfor %}
+    </nav>
+    <main id="displayArea">
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+</body>
+</html>
