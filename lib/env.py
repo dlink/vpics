@@ -4,8 +4,8 @@ import data
 
 class Env(object):
 
-    def __init__(self):
-        self.data = data.getInstance()
+    def __init__(self, dataset=None):
+        self.data = dataset or data.getInstance()
 
     @property
     def base_dir(self):
@@ -26,6 +26,6 @@ class Env(object):
 
 if __name__ == '__main__':
     env = Env()
-    print 'base_dir:', env.base_dir
-    print 'base_url:', env.base_url
-    print 'media_url:', env.media_url
+    print('base_dir:', env.base_dir)
+    print('base_url:', env.base_url)
+    print('media_url:', env.media_url)

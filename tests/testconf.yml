@@ -1,0 +1,22 @@
+site_name: Test Artworks
+site_message: Test portfolio
+media_url: test-media
+
+pages:
+  - sculptures
+  - paintings
+  - about
+
+sculptures:
+  pics:
+    - filename: Sinner.jpg
+      caption: Bronze
+
+paintings:
+  pics:
+    - name: Blue Study
+      filename: blue-study.png
+
+about:
+  html:
+    filename: about.html

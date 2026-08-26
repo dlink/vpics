@@ -1,8 +1,12 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
+from pathlib import Path
 import unittest
 
+import data
 from pages import Pages, Page
+
+TEST_CONFIG = Path(__file__).with_name('testconf.yml')
 
 PAGE_NAME = 'sculptures'
 PAGE_NAME2 = 'paintings'
@@ -10,18 +14,19 @@ PAGE_NAME2 = 'paintings'
 class TestPages(unittest.TestCase):
 
     def setUp(self):
-        self.pages = Pages()
+        self.dataset = data.configure(TEST_CONFIG)
+        self.pages = Pages(self.dataset)
 
     def test_pages_list_all(self):
         num = len(self.pages.getAll())
         self.assertTrue(num>0)
 
     def test_page_get(self):
-        page = Page(PAGE_NAME)
+        page = Page(PAGE_NAME, self.dataset)
         self.assertEqual(PAGE_NAME, page.name)
 
     def test_page_pics(self):
-        page = Page(PAGE_NAME)
+        page = Page(PAGE_NAME, self.dataset)
         self.assertTrue(len(page.pics)>0)
 
     def test_first_page(self):

@@ -5,8 +5,8 @@ class PicsError(Exception): pass
 class Pics(object): # DataTable):
     '''Preside over Pics Data'''
 
-    def __init__(self):
-        self.data = data.getInstance()
+    def __init__(self, dataset=None):
+        self.data = dataset or data.getInstance()
     
     def get(self, page_name=None):
         '''Return list of instantiated Pic Objects
@@ -23,5 +23,6 @@ class Pics(object): # DataTable):
 class Pic(object):
     '''Preside over a single Pic's Data'''
 
-    def __init__(self, name):
-        self.__dict__.update(data.getInstance().pics[name])
+    def __init__(self, name, dataset=None):
+        self.data = dataset or data.getInstance()
+        self.__dict__.update(self.data.pics[name])

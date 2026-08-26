@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 import yaml
@@ -45,12 +45,18 @@ Input YAML structure:
         else:
             try:
                 self.filename = os.environ[CONF_ENV_VAR]
-            except KeyError, e:
+            except KeyError as e:
                 raise DataError('Environment variable %s not defined.'
                                 % CONF_ENV_VAR)
         try:
-            self.data = odict(yaml.load(open(self.filename, 'r')))
-        except Exception, e:
+            with open(self.filename, 'r', encoding='utf-8') as config_file:
+                raw_data = yaml.safe_load(config_file)
+            if not isinstance(raw_data, dict):
+                raise DataError('Top-level YAML value must be a mapping.')
+            self.data = odict(raw_data)
+        except Exception as e:
+            if isinstance(e, DataError):
+                raise
             raise DataError('Unable to parse yaml: %s\n%s: %s'
                             % (self.filename, e.__class__.__name__, e))
 
@@ -118,15 +124,24 @@ Input YAML structure:
                 data.pics[pic.name] = pic
 
 
-__data = Data().data
+_data = None
+
+def configure(filename=None):
+    '''Load and retain one vpics data set for the current application.'''
+    global _data
+    _data = Data(filename).data
+    return _data
 
 def getInstance():
     '''Return a single instance of Data()'s data property'''
-    return __data
+    global _data
+    if _data is None:
+        _data = Data().data
+    return _data
 
 if __name__ == '__main__':
     from pprint import pprint
 
     data = getInstance()
-    print 'Data Dump:'
-    print pprint(data)
+    print('Data Dump:')
+    pprint(data)
