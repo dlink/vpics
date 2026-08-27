@@ -68,9 +68,7 @@ class TestSebastianPortfolio(unittest.TestCase):
                     missing_thumbnails.append(
                         '%s/300px/%s' % (page_name, picture.filename))
 
-        self.assertEqual(
-            ['illustrator2/Amazon Postcard Back2.png'],
-            missing_originals)
+        self.assertEqual([], missing_originals)
         self.assertEqual([], missing_thumbnails)
 
 

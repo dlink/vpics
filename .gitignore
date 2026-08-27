@@ -4,3 +4,5 @@ lib/vweb
 *.pyc
 .venv
 __pycache__
+*.pid
+*.sock
